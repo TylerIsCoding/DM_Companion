@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import { Navbar, Book } from "./components";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+const Main = () => (
+    <Routes>
+        <Route exact path="/" element={<Book />}></Route>
+        <Route exact path="/about" element={<About />}></Route>
+        <Route exact path="/contact" element={<Contact />}></Route>
+    </Routes>
+);
+
+const About = () => (
+    <div className="about">
+        <h1>About Me</h1>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+            Ipsum dolor dolorem consectetur est velit fugiat. Dolorem provident
+            corporis fuga saepe distinctio ipsam? Et quos harum excepturi
+            dolorum molestias?
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <p>
+            Ipsum dolor dolorem consectetur est velit fugiat. Dolorem provident
+            corporis fuga saepe distinctio ipsam? Et quos harum excepturi
+            dolorum molestias?
+        </p>
     </div>
-  );
-}
+);
+
+const Contact = () => (
+    <div className="contact">
+        <h1>Contact Me</h1>
+        <p>
+            You can reach me via email: <strong>hello@example.com</strong>
+        </p>
+    </div>
+);
+
+const App = () => {
+    return (
+        <div className="App">
+            <Navbar />
+            <Main />
+        </div>
+    );
+};
 
 export default App;

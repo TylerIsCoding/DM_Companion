@@ -1,0 +1,39 @@
+.cover {
+    position: absolute;
+    width: 1070px;
+    height: 785px;
+    border-radius: 20px;
+    background: #4a2932;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    z-index: -5;
+}
+
+.container__book {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.container__page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 512px;
+    max-width: 512px;
+    min-height: 768px;
+    max-height: 768px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.page__left {
+    background: linear-gradient(90deg, #fff3de 50.52%, #e5d6bd 87.04%);
+    border-radius: 15px 0 0 15px;
+}
+
+.page__right {
+    background: linear-gradient(270deg, #fff3de 50.52%, #e5d6bd 87.04%);
+    border-radius: 0 15px 15px 0;
+}

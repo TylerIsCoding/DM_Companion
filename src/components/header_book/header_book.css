@@ -1,0 +1,27 @@
+.header__container {
+    width: 100%;
+}
+
+.header__h1,
+.header__h3 {
+    text-align: left;
+    font-family: var(--font-family);
+}
+
+.header__h1 {
+    color: #000;
+    font-family: Manrope;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.header__h3 {
+    color: #7d7d7d;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}

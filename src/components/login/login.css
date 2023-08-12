@@ -1,0 +1,12 @@
+.form__login {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.label__email,
+.label__password {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+}

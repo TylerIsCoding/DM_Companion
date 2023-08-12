@@ -1,0 +1,60 @@
+.left__end,
+.right__end {
+    display: flex;
+    position: relative;
+    width: 50px;
+}
+
+.page__left__piece,
+.page__right__piece {
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    min-height: 768px;
+    max-height: 768px;
+    width: 50px;
+    background: #fff3de;
+}
+
+.page__left__piece {
+    border-right: none;
+    border-radius: 15px 0 0 15px;
+}
+
+.page__right__piece {
+    border-radius: 0 15px 15px 0;
+}
+
+.left__top {
+    position: absolute;
+    left: 45px;
+    z-index: -1;
+}
+
+.left__middle {
+    position: relative;
+    left: 40px;
+    z-index: -2;
+}
+
+.left__bottom {
+    position: relative;
+    left: 10px;
+    z-index: -3;
+}
+
+.right__top {
+    position: absolute;
+    left: -47px;
+    z-index: -1;
+}
+
+.right__middle {
+    position: relative;
+    left: -15px;
+    z-index: -2;
+}
+
+.right__bottom {
+    position: relative;
+    left: -35px;
+    z-index: -3;
+}
