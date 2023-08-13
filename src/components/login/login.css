@@ -9,4 +9,32 @@
     display: flex;
     flex-direction: column;
     max-width: 400px;
+    font-family: var(--font-family);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.input__text {
+    width: 258px;
+    height: 30px;
+    font-family: var(--font-family);
+    font-weight: 600;
+}
+
+.label__rememberMe {
+    color: #7d7d7d;
+    font-family: var(--font-family);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.input__rememberMe {
+    width: 19px;
+    height: 19px;
+    vertical-align: -4px;
 }
