@@ -1,6 +1,7 @@
 .button__sign_in,
 .button__sign_in_google,
-.button__sign_in_guest {
+.button__sign_in_guest,
+.button__sign_up {
     height: 40px;
     font-family: var(--font-family);
     font-size: 14px;
@@ -13,14 +14,20 @@
     cursor: pointer;
 }
 
-.button__sign_in {
+.button__sign_in,
+.button__sign_up {
     color: white;
     background-color: #a34c50;
 }
 
-.button__sign_in:hover {
+.button__sign_in:hover,
+.button__sign_up:hover {
     background-color: #c26f71;
     transition: all 0.2s;
+}
+
+.button__sign_up {
+    margin-top: 30px;
 }
 
 .button__sign_in_google {

@@ -1,5 +1,6 @@
-import Button from "../button/Button";
-import "./login.css";
+import Button from "../../button/Button";
+import HeaderBook from "../../header_book/HeaderBook";
+import "../form.css";
 
 const Login = () => {
     function handleSubmit(e) {
@@ -10,6 +11,15 @@ const Login = () => {
     }
     return (
         <>
+            <HeaderBook
+                title="Welcome"
+                body={
+                    <>
+                        Welcome, Dungeon Master... <br></br> Please enter your
+                        details below.
+                    </>
+                }
+            />
             <form method="post" onSubmit={handleSubmit} className="form__login">
                 <label className="label__email">
                     Email:{" "}
@@ -45,13 +55,13 @@ const Login = () => {
                     img="/images/google.png"
                 />
                 <Button
-                    text="Sign in as Guest"
+                    text="Continue as Guest"
                     className="button__sign_in_guest"
                 />
             </form>
             <div className="text__sign_up">
                 Don't have an account?{" "}
-                <a className="text__sign_up_link" href="/about">
+                <a className="text__sign_up_link" href="/signup">
                     Sign up
                 </a>
             </div>

@@ -1,30 +1,32 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Navbar, Book } from "./components";
+import { Navbar, Book, Login, PageTitle, SignUp } from "./components";
 import "./App.css";
 
 const Main = () => (
     <Routes>
-        <Route exact path="/" element={<Book />}></Route>
-        <Route exact path="/about" element={<About />}></Route>
-        <Route exact path="/contact" element={<Contact />}></Route>
+        <Route
+            exact
+            path="/"
+            element={
+                <Book contentLeft={<Login />} contentRight={<PageTitle />} />
+            }
+        ></Route>
+        <Route
+            exact
+            path="/signup"
+            element={
+                <Book contentLeft={<SignUp />} contentRight={<PageTitle />} />
+            }
+        ></Route>
+        <Route
+            exact
+            path="/contact"
+            element={
+                <Book contentLeft={<Contact />} contentRight={<PageTitle />} />
+            }
+        ></Route>
     </Routes>
-);
-
-const About = () => (
-    <div className="about">
-        <h1>About Me</h1>
-        <p>
-            Ipsum dolor dolorem consectetur est velit fugiat. Dolorem provident
-            corporis fuga saepe distinctio ipsam? Et quos harum excepturi
-            dolorum molestias?
-        </p>
-        <p>
-            Ipsum dolor dolorem consectetur est velit fugiat. Dolorem provident
-            corporis fuga saepe distinctio ipsam? Et quos harum excepturi
-            dolorum molestias?
-        </p>
-    </div>
 );
 
 const Contact = () => (
