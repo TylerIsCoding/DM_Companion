@@ -22,6 +22,7 @@
     height: 30px;
     font-family: var(--font-family);
     font-weight: 600;
+    margin-top: 10px;
 }
 
 .label__rememberMe {
@@ -37,4 +38,21 @@
     width: 19px;
     height: 19px;
     vertical-align: -4px;
+    cursor: pointer;
+}
+
+.text__sign_up,
+.text__sign_up_link {
+    font-family: var(--font-family);
+    color: #7d7d7d;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.text__sign_up_link {
+    text-decoration: none;
+    color: #743232;
+    font-weight: 700;
 }

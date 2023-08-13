@@ -1,5 +1,5 @@
 /* Font Imports */
-
+@import url("https://fonts.googleapis.com/css2?family=Milonga&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Corben&family=Manrope:wght@400;500;700&display=swap");
 
 html,
@@ -131,6 +131,7 @@ table {
 
 :root {
     --font-family: "Manrope", sans-serif;
+    --font-family-title: "Milonga", serif;
 }
 
 body {
@@ -161,10 +162,10 @@ body {
 }
 
 .page__right__h1 {
-    font-family: var(--font-family);
+    font-family: var(--font-family-title);
     color: #000;
     text-align: center;
-    font-size: 32px;
+    font-size: 36px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;

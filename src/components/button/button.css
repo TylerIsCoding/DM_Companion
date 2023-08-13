@@ -18,14 +18,24 @@
     background-color: #a34c50;
 }
 
+.button__sign_in:hover {
+    background-color: #c26f71;
+    transition: all 0.2s;
+}
+
 .button__sign_in_google {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     color: #333;
-    background-color: #fff;
+    background-color: #ffffff;
     border: 1px solid gray;
+}
+
+.button__sign_in_google:hover {
+    background-color: #ececec;
+    transition: all 0.2s;
 }
 
 .button__sign_in_google > img {
@@ -37,4 +47,9 @@
 .button__sign_in_guest {
     color: white;
     background: #7c7676;
+}
+
+.button__sign_in_guest:hover {
+    background: #aca3a3;
+    transition: all 0.2s;
 }
