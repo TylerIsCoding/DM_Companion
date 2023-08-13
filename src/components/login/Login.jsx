@@ -1,4 +1,4 @@
-import React from "react";
+import Button from "../button/Button";
 import "./login.css";
 
 const Login = () => {
@@ -35,6 +35,13 @@ const Login = () => {
                 ></input>
                 Remember me
             </label>
+            <Button text="Sign in" className="button__sign_in" />
+            <Button
+                text="Sign in with Google"
+                className="button__sign_in_google"
+                img="/images/google.png"
+            />
+            <Button text="Sign in as Guest" className="button__sign_in_guest" />
         </form>
     );
 };

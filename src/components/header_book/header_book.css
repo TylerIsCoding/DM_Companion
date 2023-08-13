@@ -6,6 +6,7 @@
 .header__h3 {
     text-align: left;
     font-family: var(--font-family);
+    margin-bottom: 15px;
 }
 
 .header__h1 {

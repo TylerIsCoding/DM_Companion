@@ -29,11 +29,31 @@
 }
 
 .page__left {
-    background: linear-gradient(90deg, #fff3de 50.52%, #e5d6bd 87.04%);
+    background: linear-gradient(
+        90deg,
+        #e3cca6 0%,
+        #fff6e7 32.29%,
+        #fff6e7 66.34%,
+        #e3cca6 100%
+    );
+
     border-radius: 15px 0 0 15px;
 }
 
 .page__right {
-    background: linear-gradient(270deg, #fff3de 50.52%, #e5d6bd 87.04%);
+    background: linear-gradient(
+        270deg,
+        #e3cca6 0%,
+        #fff6e7 32.29%,
+        #fff6e7 66.34%,
+        #e3cca6 100%
+    );
+
     border-radius: 0 15px 15px 0;
+}
+
+.content__page img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
