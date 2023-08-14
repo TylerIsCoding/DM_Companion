@@ -1,5 +1,6 @@
 import Button from "../../button/Button";
 import HeaderBook from "../../header_book/HeaderBook";
+import { Link } from "react-router-dom";
 import "../form.css";
 
 const Login = () => {
@@ -62,9 +63,9 @@ const Login = () => {
             </form>
             <div className="text__sign_up">
                 Don't have an account?{" "}
-                <a className="text__sign_up_link" href="/signup">
+                <Link to="/signup" className="text__sign_up_link">
                     Sign up
-                </a>
+                </Link>
             </div>
         </>
     );

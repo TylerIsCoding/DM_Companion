@@ -1,5 +1,6 @@
 import HeaderBook from "../../header_book/HeaderBook";
 import Button from "../../button/Button";
+import { Link } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import {
     faCheck,
@@ -207,9 +208,9 @@ const SignUp = () => {
             </form>
             <div className="text__sign_up">
                 Already have an account?{" "}
-                <a className="text__sign_up_link" href="/">
+                <Link to="/" className="text__sign_up_link">
                     Sign in
-                </a>
+                </Link>
             </div>
             <p
                 ref={errRef}
