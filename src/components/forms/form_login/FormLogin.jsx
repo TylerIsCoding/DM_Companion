@@ -20,13 +20,13 @@ const Login = () => {
                     </>
                 }
             />
-            <form method="post" onSubmit={handleSubmit} className="form__login">
+            <form method="" onSubmit={handleSubmit} className="form__login">
                 <label className="label__email">
-                    Email:{" "}
+                    Username:{" "}
                     <input
                         type="email"
                         name="input__email"
-                        placeholder="Enter your email address"
+                        placeholder="Enter your username"
                         className="input__text"
                     ></input>
                 </label>
@@ -53,6 +53,7 @@ const Login = () => {
                     text="Sign in with Google"
                     className="button__sign_in_google"
                     img="/images/google.png"
+                    alt="Google icon"
                 />
                 <Button
                     text="Continue as Guest"

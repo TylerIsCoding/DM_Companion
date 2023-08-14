@@ -26,6 +26,15 @@
     transition: all 0.2s;
 }
 
+.button__sign_up:disabled {
+    background-color: #5e5e5e5b;
+}
+
+.button__sign_up:disabled:hover {
+    background-color: #5e5e5e5b;
+    cursor: not-allowed;
+}
+
 .button__sign_up {
     margin-top: 30px;
 }

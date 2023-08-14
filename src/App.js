@@ -40,10 +40,10 @@ const Contact = () => (
 
 const App = () => {
     return (
-        <div className="App">
+        <main className="App">
             <Navbar />
             <Main />
-        </div>
+        </main>
     );
 };
 
