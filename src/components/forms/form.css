@@ -87,16 +87,19 @@
     display: none;
 }
 
-.valid {
-    color: limegreen;
+.valid,
+.invalid {
+    color: inherit;
     margin-left: 0.25rem;
     font-size: 18px;
 }
 
+.valid {
+    color: limegreen;
+}
+
 .invalid {
     color: red;
-    margin-left: 0.25rem;
-    font-size: 18px;
 }
 
 .nameHolder {

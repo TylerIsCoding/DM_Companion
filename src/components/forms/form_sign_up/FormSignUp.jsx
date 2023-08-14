@@ -103,7 +103,7 @@ const SignUp = () => {
                         <FontAwesomeIcon icon={faInfoCircle} />{" "}
                         <u>Requirements</u>
                         <br />
-                        * 3 to 24 characters.
+                        * 4 to 24 characters.
                         <br />
                         * Must begin with a letter.
                         <br />* Letters, numbers, underscores, hyphens allowed.
@@ -204,6 +204,12 @@ const SignUp = () => {
                     disabled={
                         !validName || !validPwd || !validMatch ? true : false
                     }
+                />
+                <Button
+                    text="Sign up with Google"
+                    className="button__sign_in_google"
+                    img="/images/google.png"
+                    alt="Google icon"
                 />
             </form>
             <div className="text__sign_up">

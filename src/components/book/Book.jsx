@@ -1,6 +1,5 @@
 import React from "react";
-import PageEndLeft from "../page_end/PageEndLeft";
-import PageEndRight from "../page_end/PageEndRight";
+import PageEnd from "../page_end/PageEnd";
 
 import "./book.css";
 
@@ -8,14 +7,14 @@ const Book = ({ contentLeft, contentRight }) => {
     return (
         <div className="container__book center">
             <div className="cover"></div>
-            <PageEndLeft />
+            <PageEnd side="left" />
             <div className="container__page page__left">
                 <div className="content__page">{contentLeft}</div>
             </div>
             <div className="container__page page__right">
                 <div className="content__page">{contentRight}</div>
             </div>
-            <PageEndRight />
+            <PageEnd side="right" />
         </div>
     );
 };
