@@ -1,6 +1,6 @@
 import HeaderBook from "../../header_book/HeaderBook";
 import Button from "../../button/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import {
@@ -16,6 +16,7 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const SignUp = () => {
     const userRef = useRef();
     const errRef = useRef();
+    const navigate = useNavigate();
 
     const [user, setUser] = useState("");
     const [validName, setValidName] = useState(false);
@@ -49,16 +50,8 @@ const SignUp = () => {
         setErrMsg("");
     }, [user, pwd, matchPwd]);
 
-    const getId = async () => {
-        const data = await axios.get("http://localhost:3001/users");
-        const last = data.data[data.data.length - 1].id;
-        return Number(last + 1);
-    };
-
     const axiosPostData = async () => {
-        const userId = await getId();
         const postData = {
-            id: userId,
             username: user,
             password: pwd,
         };
@@ -82,6 +75,7 @@ const SignUp = () => {
         setMatchPwd("");
         setSuccess(true);
         axiosPostData();
+        navigate("/");
     };
 
     return (

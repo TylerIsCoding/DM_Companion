@@ -1,27 +1,17 @@
 const express = require("express");
 const router = express.Router();
+const User = require("../models/User");
 
-router.get("/users", (req, res) => {
-    const users = [
-        {
-            id: 1,
-            username: "Tyler",
-            password: "abcdefg",
-        },
-        {
-            id: 2,
-            username: "BingBong",
-            password: "dingdongbingbong",
-        },
-    ];
+router.get("/users", (req, res) => {});
 
-    res.send(users);
-});
-
-router.post("/users", (req, res) => {
-    const { id, username, password } = req.body;
-    console.log(id, username, password);
-    res.send("Signed up!");
+router.post("/users", async (req, res) => {
+    const { username, password } = req.body;
+    const newUser = new User({ username: username, password: password });
+    const saveUser = await newUser.save();
+    if (saveUser) {
+        console.log(newUser);
+        res.send("Signed up!");
+    }
 });
 
 module.exports = router;
