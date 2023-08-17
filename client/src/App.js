@@ -1,6 +1,14 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Navbar, Book, Login, PageTitle, SignUp } from "./components";
+import {
+    Navbar,
+    Home,
+    Book,
+    Login,
+    PageTitle,
+    SignUp,
+    Dashboard,
+} from "./components";
 import "./App.css";
 
 const Main = () => (
@@ -8,6 +16,13 @@ const Main = () => (
         <Route
             exact
             path="/"
+            element={
+                <Book contentLeft={<Home />} contentRight={<PageTitle />} />
+            }
+        ></Route>
+        <Route
+            exact
+            path="/login"
             element={
                 <Book contentLeft={<Login />} contentRight={<PageTitle />} />
             }
@@ -24,6 +39,16 @@ const Main = () => (
             path="/contact"
             element={
                 <Book contentLeft={<Contact />} contentRight={<PageTitle />} />
+            }
+        ></Route>
+        <Route
+            exact
+            path="/dashboard"
+            element={
+                <Book
+                    contentLeft={<Dashboard />}
+                    contentRight={<PageTitle />}
+                />
             }
         ></Route>
     </Routes>

@@ -3,7 +3,7 @@
     top: 0;
     width: 100%;
     padding: 10px 0 10px 0;
-    background-color: rgb(139, 189, 230);
+    background-color: #336e9e;
     z-index: 10;
 }
 
@@ -13,6 +13,11 @@
     justify-content: space-around;
     font-family: var(--font-family);
     font-weight: 700;
+}
+
+.nav__list li:hover {
+    cursor: pointer;
+    color: gray;
 }
 
 .nav__list li a {

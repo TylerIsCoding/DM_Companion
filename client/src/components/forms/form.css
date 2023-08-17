@@ -114,5 +114,8 @@
     color: firebrick;
     font-weight: bold;
     padding: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    text-align: center;
+    max-width: 258px;
 }

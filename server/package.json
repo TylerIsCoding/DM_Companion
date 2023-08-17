@@ -11,6 +11,7 @@
   "author": "Tyler McKenna",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "connect-mongo": "^5.0.0",
     "cors": "^2.8.5",
@@ -19,6 +20,7 @@
     "express-session": "^1.17.3",
     "mongodb": "^5.7.0",
     "mongoose": "^7.4.3",
+    "morgan": "^1.10.0",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0"
   },

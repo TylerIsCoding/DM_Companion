@@ -1,22 +1,38 @@
 import { useRef, useEffect } from "react";
-
+import axios from "axios";
 import Button from "../../button/Button";
 import HeaderBook from "../../header_book/HeaderBook";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../form.css";
 
 const Login = () => {
     const userRef = useRef();
+    const navigate = useNavigate();
 
     useEffect(() => {
         userRef.current.focus();
     }, []);
 
-    function handleSubmit(e) {
-        e.preventDefault();
+    const axiosPostData = async (e) => {
         const form = e.target;
         const formData = new FormData(form);
-        console.log(formData);
+        const [username, pwd] = [
+            formData.get("input__username"),
+            formData.get("input__password"),
+        ];
+        const postData = {
+            username: username,
+            password: pwd,
+        };
+
+        await axios
+            .post("http://localhost:3001/login", postData)
+            .then((res) => console.log(res));
+    };
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        axiosPostData(e);
     }
 
     return (

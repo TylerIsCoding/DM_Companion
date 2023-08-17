@@ -31,7 +31,6 @@ const SignUp = () => {
     const [matchFocus, setMatchFocus] = useState(false);
 
     const [errMsg, setErrMsg] = useState("");
-    const [success, setSuccess] = useState(false);
 
     useEffect(() => {
         userRef.current.focus();
@@ -57,7 +56,7 @@ const SignUp = () => {
         };
 
         await axios
-            .post("http://localhost:3001/users", postData)
+            .post("http://localhost:3001/signup", postData)
             .then((res) => setErrMsg(res.data));
     };
 
@@ -73,9 +72,7 @@ const SignUp = () => {
         setUser("");
         setPwd("");
         setMatchPwd("");
-        setSuccess(true);
         axiosPostData();
-        navigate("/");
     };
 
     return (
@@ -235,7 +232,7 @@ const SignUp = () => {
             </form>
             <div className="text__sign_up">
                 Already have an account?{" "}
-                <Link to="/" className="text__sign_up_link">
+                <Link to="/login" className="text__sign_up_link">
                     Sign in
                 </Link>
             </div>
