@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import axios from "axios";
 import Button from "../../button/Button";
 import HeaderBook from "../../header_book/HeaderBook";
@@ -7,6 +7,8 @@ import "../form.css";
 
 const Login = () => {
     const userRef = useRef();
+    const errRef = useRef();
+    const [errMsg, setErrMsg] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -27,11 +29,18 @@ const Login = () => {
 
         await axios
             .post("http://localhost:3001/login", postData)
-            .then((res) => console.log(res));
+            .then((res) => {
+                if (res.data.err) {
+                    setErrMsg(res.data.err);
+                } else {
+                    navigate(res.data.redirect);
+                }
+            });
     };
 
     function handleSubmit(e) {
         e.preventDefault();
+        setErrMsg("");
         axiosPostData(e);
     }
 
@@ -107,6 +116,13 @@ const Login = () => {
                     Sign up
                 </Link>
             </div>
+            <p
+                ref={errRef}
+                className={errMsg ? "errmsg" : "offscreen"}
+                aria-live="assertive"
+            >
+                {errMsg}
+            </p>
         </>
     );
 };

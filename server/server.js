@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
@@ -8,7 +7,9 @@ const logger = require("morgan");
 const connectDB = require("./config/database");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const flash = require("flash");
 const mainRoutes = require("./routes/main");
+const dashRoutes = require("./routes/dash");
 
 require("dotenv").config({ path: "./config/.env" });
 
@@ -22,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(
     session({
-        secret: "keyboard cat",
+        secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
         store: MongoStore.create({
@@ -33,6 +34,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 app.use(logger("dev"));
 
 const corsOptions = {
@@ -44,6 +46,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use("/", mainRoutes);
+app.use("/dashboard", dashRoutes);
 
 app.listen(process.env.PORT || 3001, () => {
     console.log(`Server running on port ${process.env.PORT}...`);

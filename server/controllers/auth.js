@@ -1,22 +1,35 @@
-const passport = require("passport");
 const User = require("../models/User");
+const validator = require("validator");
+const passport = require("passport");
 
-exports.postLogin = (req, res, next) => {
-    passport.authenticate("local", (err, user) => {
-        console.log(user);
+exports.postLogin = async (req, res) => {
+    const validationErrors = [];
+    if (validator.isEmpty(req.body.username))
+        validationErrors.push({ msg: "Please enter a valid username." });
+    if (validator.isEmpty(req.body.password))
+        validationErrors.push({ msg: "Password cannot be blank." });
+
+    if (validationErrors.length) {
+        req.flash("errors", validationErrors);
+        return res.redirect("/login");
+    }
+
+    passport.authenticate("local", (err, user, info) => {
         if (err) {
             return next(err);
         }
         if (!user) {
             console.log(user);
+            return res.send({ err: "Username or password incorrect" });
         }
         req.logIn(user, (err) => {
             if (err) {
                 return next(err);
             }
+            console.log(user);
             res.redirect("/dashboard");
         });
-    })(req, res, next);
+    })(req, res);
 };
 
 exports.postSignup = async (req, res) => {
