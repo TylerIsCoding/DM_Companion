@@ -1,48 +1,64 @@
-import { useRef, useEffect, useState } from "react";
-import axios from "axios";
+import { useRef, useEffect, useState, useContext } from "react";
+import AuthContext from "../../../context/AuthProvider";
+import axios from "../../../api/axios";
 import Button from "../../button/Button";
 import HeaderBook from "../../header_book/HeaderBook";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../form.css";
 
+const LOGIN_URL = "/auth";
+
 const Login = () => {
+    const { setAuth } = useContext(AuthContext);
+
     const userRef = useRef();
     const errRef = useRef();
+
+    const [user, setUser] = useState("");
+    const [pwd, setPwd] = useState("");
     const [errMsg, setErrMsg] = useState("");
-    const navigate = useNavigate();
+    const [success, setSuccess] = useState(false);
 
     useEffect(() => {
         userRef.current.focus();
     }, []);
 
-    const axiosPostData = async (e) => {
-        const form = e.target;
-        const formData = new FormData(form);
-        const [username, pwd] = [
-            formData.get("input__username"),
-            formData.get("input__password"),
-        ];
-        const postData = {
-            username: username,
-            password: pwd,
-        };
-
-        await axios
-            .post("http://localhost:3001/login", postData)
-            .then((res) => {
-                if (res.data.err) {
-                    setErrMsg(res.data.err);
-                } else {
-                    navigate(res.data.redirect);
-                }
-            });
-    };
-
-    function handleSubmit(e) {
-        e.preventDefault();
+    useEffect(() => {
         setErrMsg("");
-        axiosPostData(e);
-    }
+    }, [user, pwd]);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.post(
+                LOGIN_URL,
+                JSON.stringify({ user, pwd }),
+                {
+                    headers: { "Content-Type": "application/json" },
+                    withCredentials: true,
+                }
+            );
+            console.log(JSON.stringify(response?.data));
+            const accessToken = response?.data?.accessToken;
+            const roles = response?.data?.roles;
+            setAuth({ user, pwd, roles, accessToken });
+            setUser("");
+            setPwd("");
+            setSuccess("");
+        } catch (err) {
+            if (!err?.response) {
+                setErrMsg("No server response.");
+            } else if (err.response?.status === 400) {
+                setErrMsg("Missing username or password");
+            } else if (err.response?.status === 401) {
+                setErrMsg("Unauthorized");
+            } else {
+                setErrMsg("Login failed.");
+            }
+            errRef.current.focus();
+        }
+    };
 
     return (
         <>
