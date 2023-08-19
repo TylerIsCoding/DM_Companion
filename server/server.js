@@ -7,9 +7,10 @@ const logger = require("morgan");
 const connectDB = require("./config/database");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const flash = require("flash");
-const mainRoutes = require("./routes/main");
-const dashRoutes = require("./routes/dash");
+const [registerRoute, loginRoute] = [
+    require("./routes/register"),
+    require("./routes/auth"),
+];
 
 require("dotenv").config({ path: "./config/.env" });
 
@@ -34,7 +35,6 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());
 app.use(logger("dev"));
 
 const corsOptions = {
@@ -45,8 +45,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.use("/", mainRoutes);
-app.use("/dashboard", dashRoutes);
+app.use("/signup", registerRoute);
+app.use("/login", loginRoute);
 
 app.listen(process.env.PORT || 3001, () => {
     console.log(`Server running on port ${process.env.PORT}...`);

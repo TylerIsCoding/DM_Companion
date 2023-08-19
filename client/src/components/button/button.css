@@ -69,3 +69,31 @@
     background: #aca3a3;
     transition: all 0.2s;
 }
+
+.button_home {
+    margin-bottom: 0;
+}
+
+.bg__purple {
+    background-color: #634ca3;
+}
+
+.bg__purple:hover {
+    background-color: #8666db;
+}
+
+.bg__blue {
+    background-color: #4c74a3;
+}
+
+.bg__blue:hover {
+    background-color: #6293cc;
+}
+
+.bg__teal {
+    background-color: #4c8ea3;
+}
+
+.bg__teal:hover {
+    background-color: #62b5ce;
+}

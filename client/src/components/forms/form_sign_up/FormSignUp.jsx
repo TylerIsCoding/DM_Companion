@@ -1,6 +1,6 @@
 import HeaderBook from "../../header_book/HeaderBook";
 import Button from "../../button/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import {
@@ -16,7 +16,6 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const SignUp = () => {
     const userRef = useRef();
     const errRef = useRef();
-    const navigate = useNavigate();
 
     const [user, setUser] = useState("");
     const [validName, setValidName] = useState(false);
