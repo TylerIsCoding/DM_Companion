@@ -1,40 +1,22 @@
 const express = require("express");
 const app = express();
-const passport = require("passport");
-const session = require("express-session");
-const MongoStore = require("connect-mongo");
 const logger = require("morgan");
 const connectDB = require("./config/database");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const [registerRoute, loginRoute] = [
+const [registerRoute, loginRoute, usersRoute] = [
     require("./routes/register"),
     require("./routes/auth"),
+    require("./routes/users"),
 ];
 
 require("dotenv").config({ path: "./config/.env" });
-
-// Passport config
-require("./config/passport")(passport);
 
 connectDB();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(
-    session({
-        secret: process.env.SESSION_SECRET,
-        resave: false,
-        saveUninitialized: false,
-        store: MongoStore.create({
-            mongoUrl: process.env.DB_STRING,
-        }),
-    })
-);
-
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(logger("dev"));
 
 const corsOptions = {
@@ -47,6 +29,7 @@ app.use(cors(corsOptions));
 
 app.use("/signup", registerRoute);
 app.use("/login", loginRoute);
+app.use("/users", usersRoute);
 
 app.listen(process.env.PORT || 3001, () => {
     console.log(`Server running on port ${process.env.PORT}...`);
