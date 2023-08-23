@@ -1,11 +1,10 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 
-require("dotenv").config({ path: "../config/.env" });
-
-exports.handleRefreshToken = async (req, res) => {
+const handleRefreshToken = async (req, res) => {
     const cookies = req.cookies;
-    if (!cookies?.jwt) return res.status(401);
+    console.log(cookies);
+    if (!cookies?.jwt) return res.sendStatus(401);
     const refreshToken = cookies.jwt;
     const foundUser = await User.findOne({ refreshToken: refreshToken });
     if (!foundUser) {
@@ -27,3 +26,5 @@ exports.handleRefreshToken = async (req, res) => {
         }
     );
 };
+
+module.exports = { handleRefreshToken };

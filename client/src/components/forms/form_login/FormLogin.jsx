@@ -29,10 +29,9 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         try {
             const response = await axios.post(
-                LOGIN_URL,
+                "http://localhost:3001/login",
                 JSON.stringify({ user, pwd }),
                 {
                     headers: { "Content-Type": "application/json" },

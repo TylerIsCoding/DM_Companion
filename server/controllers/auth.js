@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 require("dotenv").config({ path: "../config/.env" });
 
-exports.handleLogin = async (req, res) => {
+const handleLogin = async (req, res) => {
     const { username, password } = req.body;
     const foundUser = await User.findOne({ username: username });
     if (!foundUser) {
@@ -23,12 +23,17 @@ exports.handleLogin = async (req, res) => {
             process.env.REFRESH_TOKEN_SECRET,
             { expiresIn: "1d" }
         );
-        // Compare other users to current user.
+
+        // Attach headers to user.
         foundUser.refreshToken = refreshToken;
         await foundUser.save();
+
         console.log(foundUser);
+
         res.cookie("jwt", refreshToken, {
             httpOnly: true,
+            sameSite: "None",
+            secure: true,
             maxAge: 24 * 60 * 60 * 1000,
         });
         res.json({ accessToken });
@@ -36,3 +41,5 @@ exports.handleLogin = async (req, res) => {
         res.send("Password incorrect.");
     }
 };
+
+module.exports = { handleLogin };

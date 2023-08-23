@@ -1,15 +1,16 @@
 const User = require("../models/User");
 
-exports.handleSignup = async (req, res) => {
+const handleSignup = async (req, res) => {
     const { username, password } = req.body;
-    const existingUser = await User.findOne({ username: username });
+    const existingUser = await User.findOne({ username: username }).exec();
     if (existingUser) {
         res.send("Username already taken.");
     } else {
-        const newUser = new User({ username: username, password: password });
-        const saveUser = await newUser.save();
-        if (saveUser) {
+        const newUser = User.create({ username: username, password: password });
+        if (newUser) {
             res.send("Signed up!");
         }
     }
 };
+
+module.exports = { handleSignup };
