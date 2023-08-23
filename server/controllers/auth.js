@@ -6,7 +6,7 @@ require("dotenv").config({ path: "../config/.env" });
 
 const handleLogin = async (req, res) => {
     const { username, password } = req.body;
-    const foundUser = await User.findOne({ username: username });
+    const foundUser = await User.findOne({ username: username }).exec();
     if (!foundUser) {
         return res.send("Username not found.");
     }
@@ -26,16 +26,14 @@ const handleLogin = async (req, res) => {
 
         // Attach headers to user.
         foundUser.refreshToken = refreshToken;
-        await foundUser.save();
-
-        console.log(foundUser);
+        const result = await foundUser.save();
+        console.log(result);
 
         res.cookie("jwt", refreshToken, {
             httpOnly: true,
             sameSite: "None",
-            secure: true,
             maxAge: 24 * 60 * 60 * 1000,
-        });
+        }); // Secure: true
         res.json({ accessToken });
     } else {
         res.send("Password incorrect.");

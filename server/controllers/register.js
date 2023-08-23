@@ -2,7 +2,7 @@ const User = require("../models/User");
 
 const handleSignup = async (req, res) => {
     const { username, password } = req.body;
-    const existingUser = await User.findOne({ username: username }).exec();
+    const existingUser = await User.findOne({ username: username });
     if (existingUser) {
         res.send("Username already taken.");
     } else {
