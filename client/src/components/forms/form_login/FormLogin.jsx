@@ -6,7 +6,7 @@ import HeaderBook from "../../header_book/HeaderBook";
 import { Link } from "react-router-dom";
 import "../form.css";
 
-const LOGIN_URL = "/auth";
+const LOGIN_URL = "login";
 
 const Login = () => {
     const { setAuth } = useContext(AuthContext);
@@ -31,8 +31,8 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await axios.post(
-                "http://localhost:3001/login",
-                JSON.stringify({ user, pwd }),
+                LOGIN_URL,
+                JSON.stringify({ username: user, password: pwd }),
                 {
                     headers: { "Content-Type": "application/json" },
                     withCredentials: true,
@@ -42,16 +42,16 @@ const Login = () => {
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
             setAuth({ user, pwd, roles, accessToken });
-            setUser("");
+            setUser(user);
             setPwd("");
-            setSuccess("");
+            setSuccess(true);
         } catch (err) {
             if (!err?.response) {
                 setErrMsg("No server response.");
             } else if (err.response?.status === 400) {
-                setErrMsg("Missing username or password");
+                setErrMsg(err.response?.data);
             } else if (err.response?.status === 401) {
-                setErrMsg("Unauthorized");
+                setErrMsg(err.response?.data);
             } else {
                 setErrMsg("Login failed.");
             }
@@ -61,83 +61,105 @@ const Login = () => {
 
     return (
         <>
-            <HeaderBook
-                title="Welcome"
-                body={
-                    <>
-                        Welcome, Dungeon Master... <br></br> Please enter your
-                        details below.
-                    </>
-                }
-            />
-            <form onSubmit={handleSubmit} className="form__login">
-                <label className="label__form" htmlFor="username">
-                    Username:{" "}
-                    <input
-                        id="username"
-                        ref={userRef}
-                        type="text"
-                        name="input__username"
-                        placeholder="Enter your username"
-                        required
-                        className="input__text"
-                        aria-describedby="uidnote"
-                    ></input>
-                </label>
-                <label className="label__form" htmlFor="password">
-                    Password:{" "}
-                    <input
-                        type="password"
-                        name="input__password"
-                        required
-                        placeholder="Enter your password"
-                        className="input__text"
-                    ></input>
-                </label>
-                <label className="label__rememberMe" htmlFor="remember_me">
-                    <input
-                        id="remember_me"
-                        type="checkbox"
-                        name="input__rememberMe"
-                        defaultChecked={false}
-                        className="input__rememberMe"
-                    ></input>
-                    Remember me
-                </label>
-                <Button
-                    text="Sign in"
-                    className="button__sign_in"
-                    type="submit"
-                    onClick={handleSubmit}
-                />
-                <Button
-                    text="Sign in with Google"
-                    className="button__sign_in_google"
-                    type="button"
-                    onClick={(e) => e.preventDefault()}
-                    img="/images/google.png"
-                    alt="Google icon"
-                />
-                <Button
-                    text="Continue as Guest"
-                    className="button__sign_in_guest"
-                    type="button"
-                    onClick={(e) => e.preventDefault()}
-                />
-            </form>
-            <div className="text__sign_up">
-                Don't have an account?{" "}
-                <Link to="/signup" className="text__sign_up_link">
-                    Sign up
-                </Link>
-            </div>
-            <p
-                ref={errRef}
-                className={errMsg ? "errmsg" : "offscreen"}
-                aria-live="assertive"
-            >
-                {errMsg}
-            </p>
+            {success ? (
+                <section>
+                    <HeaderBook
+                        title="Signed in!"
+                        body={<>Welcome {user}!</>}
+                    />
+                </section>
+            ) : (
+                <section>
+                    <HeaderBook
+                        title="Welcome"
+                        body={
+                            <>
+                                Welcome, Dungeon Master... <br></br> Please
+                                enter your details below.
+                            </>
+                        }
+                    />
+                    <form onSubmit={handleSubmit} className="form__login">
+                        <label className="label__form" htmlFor="username">
+                            Username:{" "}
+                            <input
+                                id="username"
+                                ref={userRef}
+                                type="text"
+                                name="input__username"
+                                placeholder="Enter your username"
+                                value={user}
+                                onChange={(e) => setUser(e.target.value)}
+                                required
+                                className="input__text"
+                                aria-describedby="uidnote"
+                            ></input>
+                        </label>
+                        <label className="label__form" htmlFor="password">
+                            Password:{" "}
+                            <input
+                                type="password"
+                                name="input__password"
+                                value={pwd}
+                                onChange={(e) => setPwd(e.target.value)}
+                                required
+                                placeholder="Enter your password"
+                                className="input__text"
+                            ></input>
+                        </label>
+                        <label
+                            className="label__rememberMe"
+                            htmlFor="remember_me"
+                        >
+                            <input
+                                id="remember_me"
+                                type="checkbox"
+                                name="input__rememberMe"
+                                defaultChecked={false}
+                                className="input__rememberMe"
+                            ></input>
+                            Remember me
+                        </label>
+                        <Button
+                            text="Sign in"
+                            className="button__sign_in"
+                            type="submit"
+                            onClick={handleSubmit}
+                        />
+                        <button
+                            className="button__sign_in_google"
+                            type="button"
+                            onClick={(e) => e.preventDefault()}
+                        >
+                            <img
+                                src="/images/google.png"
+                                alt="Google icon"
+                            ></img>
+                            Sign in with Google
+                        </button>
+                        <button
+                            className="button__sign_in_guest"
+                            type="button"
+                            onClick={(e) => e.preventDefault()}
+                        >
+                            Continue as Guest
+                        </button>
+                    </form>
+                    <div className="text__sign_up">
+                        Don't have an account?{" "}
+                        <Link to="/signup" className="text__sign_up_link">
+                            Sign up
+                        </Link>
+                    </div>
+                    <p
+                        ref={errRef}
+                        className={errMsg ? "errmsg" : "offscreen"}
+                        aria-live="assertive"
+                    >
+                        {errMsg}
+                    </p>
+                </section>
+            )}
         </>
     );
 };
