@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import {
     Navbar,
-    Home,
+    HomeMenu,
     Book,
     Login,
     PageTitle,
@@ -17,7 +17,7 @@ const Main = () => (
             exact
             path="/"
             element={
-                <Book contentLeft={<Home />} contentRight={<PageTitle />} />
+                <Book contentLeft={<HomeMenu />} contentRight={<PageTitle />} />
             }
         ></Route>
         <Route
@@ -51,7 +51,20 @@ const Main = () => (
                 />
             }
         ></Route>
+        <Route
+            exact
+            path="/monsters"
+            element={
+                <Book contentLeft={<Monsters />} contentRight={<PageTitle />} />
+            }
+        ></Route>
     </Routes>
+);
+
+const Monsters = () => (
+    <div className="monsters">
+        <h1>Volo's Guide to Monsters</h1>
+    </div>
 );
 
 const Contact = () => (

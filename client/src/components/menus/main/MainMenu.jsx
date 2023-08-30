@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./home.css";
+import "./main.css";
 
-const Home = () => {
+const MainMenu = ({ user }) => {
     const navigate = useNavigate();
     const handleClick = (route) => {
         navigate(route);
@@ -12,13 +12,9 @@ const Home = () => {
         <>
             <section className="container__home">
                 <img src="/images/dice.png" alt="dice" className="img__home" />
-                <h1 className="header__h1__home">
-                    Welcome to the Dungeon
-                    <br />
-                    Master's Companion
-                </h1>
+                <h1 className="header__h1__home">Welcome, {user}</h1>
                 <h3 className="header__h3__home">
-                    Please choose an option below.
+                    Please choose an option below
                 </h3>
                 <div className="container__home__buttons">
                     <button
@@ -26,28 +22,28 @@ const Home = () => {
                         type="button"
                         onClick={() => handleClick("/login")}
                     >
-                        Log in
+                        Create Campaign
                     </button>
                     <button
                         className="button__sign_in button_home bg__purple"
                         type="button"
                         onClick={() => handleClick("/signup")}
                     >
-                        Sign up
+                        Login to Campaign
                     </button>
                     <button
                         className="button__sign_in button_home bg__blue"
                         type="button"
                         onClick={() => handleClick("/about")}
                     >
-                        About
+                        Encounter Tracker
                     </button>
                     <button
                         className="button__sign_in button_home bg__teal"
                         type="button"
-                        onClick={() => handleClick("/contact")}
+                        onClick={() => handleClick("/monsters")}
                     >
-                        Contact
+                        Volo's Guide to Monsters
                     </button>
                 </div>
             </section>
@@ -55,4 +51,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default MainMenu;

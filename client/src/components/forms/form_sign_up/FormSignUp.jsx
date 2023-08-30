@@ -84,8 +84,8 @@ const SignUp = () => {
         <>
             {success ? (
                 <HeaderBook
-                    title={"Welcome!"}
-                    body={`Thank you for signing up ${user}!`}
+                    title={`Welcome ${user}!`}
+                    body={<>Please login below</>}
                 />
             ) : (
                 <section>

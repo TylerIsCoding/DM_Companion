@@ -1,4 +1,5 @@
-export { default as Home } from "./home/Home";
+export { default as HomeMenu } from "./menus/home/HomeMenu";
+export { default as MainMenu } from "./menus/main/MainMenu";
 export { default as Login } from "./forms/form_login/FormLogin";
 export { default as SignUp } from "./forms/form_sign_up/FormSignUp";
 export { default as Navbar } from "./navbar/Navbar";

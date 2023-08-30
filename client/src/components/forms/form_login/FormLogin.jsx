@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState, useContext } from "react";
 import AuthContext from "../../../context/AuthProvider";
 import axios from "../../../api/axios";
+import MainMenu from "../../menus/main/MainMenu";
 import Button from "../../button/Button";
 import HeaderBook from "../../header_book/HeaderBook";
 import { Link } from "react-router-dom";
@@ -63,10 +64,7 @@ const Login = () => {
         <>
             {success ? (
                 <section>
-                    <HeaderBook
-                        title="Signed in!"
-                        body={<>Welcome {user}!</>}
-                    />
+                    <MainMenu user={user} />
                 </section>
             ) : (
                 <section>
