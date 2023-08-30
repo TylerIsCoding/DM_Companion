@@ -1,4 +1,5 @@
 import HeaderBook from "../../header_book/HeaderBook";
+import MainMenu from "../../dashboard/Dashboard";
 import Button from "../../button/Button";
 import { Link } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
@@ -83,15 +84,12 @@ const SignUp = () => {
     return (
         <>
             {success ? (
-                <HeaderBook
-                    title={`Welcome ${user}!`}
-                    body={<>Please login below</>}
-                />
+                <MainMenu user={user} />
             ) : (
                 <section>
                     <HeaderBook
                         title="Sign Up"
-                        body="Please enter your information below."
+                        body="Please enter your information below"
                     />
                     <form onSubmit={handleSubmit} className="form__login">
                         <label className="label__form" htmlFor="username">
