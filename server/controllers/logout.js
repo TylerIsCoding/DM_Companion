@@ -19,9 +19,6 @@ const handleLogout = async (req, res) => {
         console.log("User not found");
         return res.sendStatus(204);
     }
-    // Delete refreshToken in the DB
-
-    // CHANGE THIS
 
     foundUser.refreshToken = "";
     const result = await foundUser.save();

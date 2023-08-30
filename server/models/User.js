@@ -10,6 +10,10 @@ const UserSchema = new mongoose.Schema({
         type: "String",
         required: true,
     },
+    roles: {
+        type: "Object",
+        required: true,
+    },
     refreshToken: {
         type: "String",
     },

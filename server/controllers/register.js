@@ -6,7 +6,11 @@ const handleSignup = async (req, res) => {
     if (existingUser) {
         res.status(409).send("Username already taken.");
     } else {
-        const newUser = User.create({ username: username, password: password });
+        const newUser = User.create({
+            username: username,
+            password: password,
+            roles: { User: 2001 },
+        });
         if (newUser) {
             res.status(201).send("User created!");
         }
