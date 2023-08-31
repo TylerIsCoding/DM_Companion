@@ -11,8 +11,11 @@ const UserSchema = new mongoose.Schema({
         required: true,
     },
     roles: {
-        type: "Object",
-        required: true,
+        User: {
+            type: "Number",
+            default: 2000,
+        },
+        Guest: Number,
     },
     refreshToken: {
         type: "String",

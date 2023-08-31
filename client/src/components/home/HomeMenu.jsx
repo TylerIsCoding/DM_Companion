@@ -24,7 +24,7 @@ const HomeMenu = () => {
                     <button
                         className="button__sign_in button_home"
                         type="button"
-                        onClick={() => handleClick("/dashboard")}
+                        onClick={() => handleClick("/login")}
                     >
                         Log in
                     </button>

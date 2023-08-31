@@ -1,12 +1,14 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import {
+    About,
     Book,
     HomeMenu,
     Missing,
     Monsters,
     PageTitle,
     Login,
+    Logout,
     SignUp,
     Layout,
     Contact,
@@ -73,6 +75,24 @@ const App = () => {
                         element={
                             <Book
                                 contentLeft={<Monsters />}
+                                contentRight={<PageTitle />}
+                            />
+                        }
+                    />
+                    <Route
+                        path="logout"
+                        element={
+                            <Book
+                                contentLeft={<Logout />}
+                                contentRight={<PageTitle />}
+                            />
+                        }
+                    />
+                    <Route
+                        path="about"
+                        element={
+                            <Book
+                                contentLeft={<About />}
                                 contentRight={<PageTitle />}
                             />
                         }

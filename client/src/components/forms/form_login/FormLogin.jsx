@@ -12,7 +12,7 @@ const Login = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from?.pathname || "/";
+    let from = location.state?.from?.pathname || "/dashboard";
 
     const userRef = useRef();
     const errRef = useRef();
@@ -46,7 +46,7 @@ const Login = () => {
             setAuth({ user, pwd, roles, accessToken });
             setUser(user);
             setPwd("");
-            navigate(from, { replace: true });
+            navigate(from, { state: { user: user } }, { replace: true });
         } catch (err) {
             if (!err?.response) {
                 setErrMsg("No server response.");
@@ -64,8 +64,8 @@ const Login = () => {
     return (
         <section>
             <HeaderBook
-                title={<>Welcome!</>}
-                body={<>Please enter your details below</>}
+                title="Welcome!"
+                body="Please enter your details below"
             />
             <form onSubmit={handleSubmit} className="form__login">
                 <label className="label__form" htmlFor="username">
