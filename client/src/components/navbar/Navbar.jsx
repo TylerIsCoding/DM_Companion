@@ -4,7 +4,12 @@ import useAuth from "../../hooks/useAuth";
 import "./navbar.css";
 
 const Navbar = () => {
-    const { auth } = useAuth();
+    const { auth, setAuth } = useAuth();
+
+    const logout = async () => {
+        setAuth({});
+    };
+
     return (
         <>
             {auth?.user ? (
@@ -14,7 +19,9 @@ const Navbar = () => {
                             <NavLink to="/dashboard">Home</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/logout">Logout</NavLink>
+                            <NavLink onClick={logout} to="/">
+                                Logout
+                            </NavLink>
                         </li>
                         <li>
                             <NavLink to="/about">About</NavLink>

@@ -1,7 +1,5 @@
 const verifyRoles = (...allowedRoles) => {
-    console.log(allowedRoles);
     return (req, res, next) => {
-        console.log("Role verification started...");
         if (!req?.roles) return res.sendStatus(401);
         const rolesArray = [...allowedRoles];
         const result = req.roles

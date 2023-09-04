@@ -8,7 +8,6 @@ import {
     Monsters,
     PageTitle,
     Login,
-    Logout,
     SignUp,
     Layout,
     Contact,
@@ -75,15 +74,6 @@ const App = () => {
                         element={
                             <Book
                                 contentLeft={<Monsters />}
-                                contentRight={<PageTitle />}
-                            />
-                        }
-                    />
-                    <Route
-                        path="logout"
-                        element={
-                            <Book
-                                contentLeft={<Logout />}
                                 contentRight={<PageTitle />}
                             />
                         }

@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const About = () => {
     const [users, setUsers] = useState();
     const axiosPrivate = useAxiosPrivate();
+    const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         let isMounted = true;
@@ -14,10 +17,13 @@ const About = () => {
                 const response = await axiosPrivate.get("/users", {
                     signal: controller.signal,
                 });
-                console.log(response.data);
                 isMounted && setUsers(response.data);
             } catch (e) {
                 console.error(e);
+                navigate("/login", {
+                    state: { from: location },
+                    replace: true,
+                });
             }
         };
 
@@ -27,7 +33,7 @@ const About = () => {
             isMounted = false;
             controller.abort();
         };
-    }, [axiosPrivate]);
+    }, []); // Might have to remove this useEffect
 
     return (
         <article>

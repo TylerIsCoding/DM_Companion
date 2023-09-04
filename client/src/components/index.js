@@ -6,7 +6,6 @@ export { default as Missing } from "./missing/Missing";
 export { default as Monsters } from "./monsters/Monsters";
 export { default as Contact } from "./contact/Contact";
 export { default as Login } from "./forms/form_login/FormLogin";
-export { default as Logout } from "./logout/Logout";
 export { default as SignUp } from "./forms/form_sign_up/FormSignUp";
 export { default as Navbar } from "./navbar/Navbar";
 export { default as Book } from "./book/Book";
