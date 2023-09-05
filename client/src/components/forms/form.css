@@ -136,3 +136,23 @@
     text-align: center;
     margin-bottom: 10px;
 }
+
+.search__section {
+    padding: 20px;
+}
+
+.search__row > form {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 10px;
+    max-width: 400px;
+}
+
+.search__row > form > .input__text {
+    width: 225px;
+}
+
+.search__row > form > button {
+    height: 35px;
+}
