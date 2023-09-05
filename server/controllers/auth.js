@@ -39,7 +39,8 @@ const handleLogin = async (req, res) => {
             httpOnly: true,
             sameSite: "None",
             maxAge: 24 * 60 * 60 * 1000,
-        }); // Secure: true
+            secure: true,
+        });
         res.json({ accessToken });
     } else {
         res.status(401).send("Password incorrect.");
