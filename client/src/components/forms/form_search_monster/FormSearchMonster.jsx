@@ -26,7 +26,9 @@ const FormSearchMonster = () => {
         const query = search.includes(" ")
             ? search.replaceAll(" ", "-")
             : search;
-        if (query.length > 0) {
+        if (query.length > 20) {
+            setErrMsg("Query is too long");
+        } else if (query.length > 0) {
             try {
                 const response = await axios.get(MONSTER_URL + query);
                 if (response?.data) {
@@ -38,7 +40,7 @@ const FormSearchMonster = () => {
             } catch (error) {
                 console.log(error);
                 setMonster("");
-                setErrMsg("Invalid search");
+                setErrMsg(`${search} not found`);
             }
         } else {
             setMonster("");
@@ -59,7 +61,7 @@ const FormSearchMonster = () => {
                             id="monstername"
                             ref={searchRef}
                             autoComplete="off"
-                            className="input__text"
+                            className="input__text input__text__monster"
                             placeholder="Enter a monster or enemy name"
                             required
                             onChange={(e) =>
@@ -68,7 +70,7 @@ const FormSearchMonster = () => {
                             aria-describedby="uidnote"
                         />
                         <button
-                            className="button__sign_in"
+                            className="button__sign_in button__search__monster"
                             type="submit"
                             onClick={handleSearch}
                         >
@@ -84,8 +86,20 @@ const FormSearchMonster = () => {
                     {errMsg}
                 </p>
             </section>
-            <section>
-                <>{monster ? <MonsterInfo data={monster} /> : <div></div>}</>
+            <section className="search__results">
+                <>
+                    {monster ? (
+                        <MonsterInfo data={monster} />
+                    ) : (
+                        <div>
+                            <img
+                                className="img__beholder"
+                                src="/images/beholder.png"
+                                alt="beholder"
+                            />
+                        </div>
+                    )}
+                </>
             </section>
         </>
     );

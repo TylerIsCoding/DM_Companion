@@ -24,6 +24,10 @@
     margin-top: 10px;
 }
 
+.input__text__monster {
+    margin-top: 0;
+}
+
 .label__rememberMe {
     color: #7d7d7d;
     font-family: var(--font-family);
@@ -138,7 +142,23 @@
 }
 
 .search__section {
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.search__section,
+.search__results {
+    max-width: 370px;
+    min-width: 370px;
+    padding-bottom: 20px;
+}
+
+.search__section h1,
+.search__section h3 {
+    text-align: center;
 }
 
 .search__row > form {

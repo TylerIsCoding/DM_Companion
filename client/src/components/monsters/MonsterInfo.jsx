@@ -31,7 +31,7 @@ const MonsterInfo = ({ data }) => {
                     </li>
                     <li>
                         <span>Hit Points: </span>
-                        {data.hit_points}
+                        {data.hit_points} ({data.hit_points_roll})
                     </li>
                     <li>
                         <span>Speaks: </span>
@@ -39,7 +39,17 @@ const MonsterInfo = ({ data }) => {
                     </li>
                     <li>
                         <span>Speed: </span>
-                        {data.speed.walk}
+                        {[...Object.keys(data.speed)]
+                            .map(
+                                (el) =>
+                                    el[0].toUpperCase() +
+                                    el.substr(1) +
+                                    ": " +
+                                    Object.values(data.speed[el])
+                                        .join("")
+                                        .replace(".", "")
+                            )
+                            .join(", ")}
                     </li>
                     <li>
                         <span>Type: </span>
@@ -63,12 +73,33 @@ const MonsterInfo = ({ data }) => {
                 <MonsterStat stat={"WIS"} statNum={data.wisdom} />
                 <MonsterStat stat={"CHA"} statNum={data.charisma} />
             </section>
-            <section className="monster__abilities_holder">
-                {/* <>
-                    {data.special_abilities.length > 0}
-                    <h1>{data.special_abilities[0].name}</h1>
-                </> */}
-            </section>
+            <h1 className="h1__special_abilities">Special Abilities</h1>
+            {data.special_abilities.length > 0 ? (
+                <section className="monster__base_info">
+                    <>
+                        <ul className="monster__base_info_list ">
+                            {[...Object.keys(data.special_abilities)].map(
+                                (el) => {
+                                    return (
+                                        <li>
+                                            <span>
+                                                {
+                                                    data.special_abilities[el]
+                                                        .name
+                                                }
+                                                :
+                                            </span>{" "}
+                                            {data.special_abilities[el].desc}
+                                        </li>
+                                    );
+                                }
+                            )}
+                        </ul>
+                    </>
+                </section>
+            ) : (
+                <h1 className="h1__none">None</h1>
+            )}
         </>
     );
 };

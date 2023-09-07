@@ -70,6 +70,10 @@
     transition: all 0.2s;
 }
 
+.button__search__monster {
+    margin: 0;
+}
+
 .button_home {
     margin-bottom: 0;
 }
