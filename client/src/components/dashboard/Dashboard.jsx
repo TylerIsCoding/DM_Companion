@@ -45,7 +45,7 @@ const Dashboard = () => {
                         type="button"
                         onClick={() => handleClick("/monsters")}
                     >
-                        Volo's Guide to Monsters
+                        Monster Manual
                     </button>
                 </div>
             </section>

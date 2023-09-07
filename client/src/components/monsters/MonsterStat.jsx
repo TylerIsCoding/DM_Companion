@@ -8,9 +8,7 @@ const MonsterStat = ({ stat, statNum }) => {
             <h1>{stat}</h1>
             <h1>
                 {statNum}
-                {mod(statNum) > 0 || mod(statNum) < 0
-                    ? `(${mod(statNum)})`
-                    : ""}
+                {mod(statNum) !== 0 ? `(${mod(statNum)})` : ""}
             </h1>
         </div>
     );

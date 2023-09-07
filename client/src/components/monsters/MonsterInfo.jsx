@@ -34,7 +34,7 @@ const MonsterInfo = ({ data }) => {
                         {data.hit_points} ({data.hit_points_roll})
                     </li>
                     <li>
-                        <span>Speaks: </span>
+                        <span>Languages: </span>
                         {data.languages}
                     </li>
                     <li>
@@ -79,9 +79,9 @@ const MonsterInfo = ({ data }) => {
                     <>
                         <ul className="monster__base_info_list ">
                             {[...Object.keys(data.special_abilities)].map(
-                                (el) => {
+                                (el, i) => {
                                     return (
-                                        <li>
+                                        <li key={i}>
                                             <span>
                                                 {
                                                     data.special_abilities[el]

@@ -1,6 +1,5 @@
 import React from "react";
 import PageEnd from "../page_end/PageEnd";
-
 import "./book.css";
 
 const Book = ({ contentLeft, contentRight }) => {

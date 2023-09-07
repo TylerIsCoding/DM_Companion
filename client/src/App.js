@@ -1,11 +1,11 @@
-import React from "react";
+import { React } from "react";
 import { Routes, Route } from "react-router-dom";
 import {
     About,
     Book,
     HomeMenu,
     Missing,
-    Monsters,
+    MonsterInfo,
     PageTitle,
     Login,
     SignUp,
@@ -73,7 +73,7 @@ const App = () => {
                         path="monsters"
                         element={
                             <Book
-                                contentLeft={<Monsters />}
+                                contentLeft={<MonsterInfo />}
                                 contentRight={<PageTitle />}
                             />
                         }

@@ -27,13 +27,13 @@ const FormSearchMonster = () => {
             ? search.replaceAll(" ", "-")
             : search;
         if (query.length > 20) {
-            setErrMsg("Query is too long");
+            setErrMsg("Search query is too long");
         } else if (query.length > 0) {
             try {
                 const response = await axios.get(MONSTER_URL + query);
                 if (response?.data) {
                     setMonster(response.data);
-                    console.log(monster);
+                    console.log(response.data);
                 } else {
                     setMonster("");
                 }
