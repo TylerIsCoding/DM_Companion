@@ -4,14 +4,14 @@
     font-size: 26px;
     font-weight: bold;
     text-decoration: underline;
+    margin-top: 30px;
 }
 
 .monster__base_info {
     padding: 10px;
-    margin-top: 20px;
     font-family: var(--font-family);
     line-height: 1.3rem;
-    max-height: 100px;
+    max-height: 320px;
     overflow-y: scroll;
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.25);
@@ -79,5 +79,21 @@
     font-family: var(--font-family);
     font-weight: bold;
     text-align: center;
-    padding-top: 20px;
+}
+
+.section__abilities_holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 400px;
+    gap: 20px;
+}
+
+.abilities__container {
+    max-height: 180px;
+}
+
+.legendary__container {
+    max-height: 100px;
 }

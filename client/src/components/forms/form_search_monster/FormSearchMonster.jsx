@@ -1,17 +1,23 @@
 import HeaderBook from "../../header_book/HeaderBook";
 import MonsterInfo from "../../monsters/MonsterInfo";
+import MonsterAbilities from "../../monsters/MonsterAbilities";
+import PageTitle from "../../page_title/PageTitle";
 import { useRef, useState, useEffect } from "react";
 import axios from "../../../api/axios";
 
 const MONSTER_URL = "https://www.dnd5eapi.co/api/monsters/";
 
-const FormSearchMonster = () => {
+const FormSearchMonster = ({ setPageRight }) => {
     const searchRef = useRef();
     const errRef = useRef();
 
     const [search, setSearch] = useState("");
     const [monster, setMonster] = useState("");
     const [errMsg, setErrMsg] = useState("");
+
+    useEffect(() => {
+        setPageRight(<PageTitle />);
+    }, [setPageRight]);
 
     useEffect(() => {
         searchRef.current.focus();
@@ -32,6 +38,7 @@ const FormSearchMonster = () => {
             try {
                 const response = await axios.get(MONSTER_URL + query);
                 if (response?.data) {
+                    setPageRight(<MonsterAbilities data={response.data} />);
                     setMonster(response.data);
                     console.log(response.data);
                 } else {
@@ -40,9 +47,11 @@ const FormSearchMonster = () => {
             } catch (error) {
                 console.log(error);
                 setMonster("");
+                setPageRight(<PageTitle />);
                 setErrMsg(`${search} not found`);
             }
         } else {
+            setPageRight(<PageTitle />);
             setMonster("");
             setErrMsg("Search cannot be blank");
         }
@@ -89,7 +98,9 @@ const FormSearchMonster = () => {
             <section className="search__results">
                 <>
                     {monster ? (
-                        <MonsterInfo data={monster} />
+                        <>
+                            <MonsterInfo data={monster} />
+                        </>
                     ) : (
                         <div>
                             <img

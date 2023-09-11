@@ -1,11 +1,10 @@
-import { React } from "react";
+import { React, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import {
     About,
     Book,
     HomeMenu,
     Missing,
-    MonsterInfo,
     PageTitle,
     Login,
     SignUp,
@@ -15,8 +14,10 @@ import {
     RequireAuth,
 } from "./components";
 import "./App.css";
+import FormSearchMonster from "./components/forms/form_search_monster/FormSearchMonster";
 
 const App = () => {
+    const [pageRight, setPageRight] = useState(<PageTitle />);
     return (
         <Routes>
             <Route exact path="/" element={<Layout />}>
@@ -73,8 +74,12 @@ const App = () => {
                         path="monsters"
                         element={
                             <Book
-                                contentLeft={<MonsterInfo />}
-                                contentRight={<PageTitle />}
+                                contentLeft={
+                                    <FormSearchMonster
+                                        setPageRight={setPageRight}
+                                    />
+                                }
+                                contentRight={pageRight}
                             />
                         }
                     />

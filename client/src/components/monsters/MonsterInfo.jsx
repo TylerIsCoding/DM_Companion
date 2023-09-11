@@ -5,6 +5,14 @@ const MonsterInfo = ({ data }) => {
     return (
         <>
             <h1 className="monster__name">{data.name}</h1>
+            <section className="monster__stat_holder">
+                <MonsterStat stat={"STR"} statNum={data.strength} />
+                <MonsterStat stat={"DEX"} statNum={data.dexterity} />
+                <MonsterStat stat={"CON"} statNum={data.constitution} />
+                <MonsterStat stat={"INT"} statNum={data.intelligence} />
+                <MonsterStat stat={"WIS"} statNum={data.wisdom} />
+                <MonsterStat stat={"CHA"} statNum={data.charisma} />
+            </section>
             <section className="monster__base_info">
                 <ul className="monster__base_info_list">
                     <li>
@@ -35,7 +43,10 @@ const MonsterInfo = ({ data }) => {
                     </li>
                     <li>
                         <span>Languages: </span>
-                        {data.languages}
+                        {data.languages.length > 0
+                            ? data.languages[0].toUpperCase() +
+                              data.languages.substr(1)
+                            : "None"}
                     </li>
                     <li>
                         <span>Speed: </span>
@@ -65,41 +76,6 @@ const MonsterInfo = ({ data }) => {
                     </li>
                 </ul>
             </section>
-            <section className="monster__stat_holder">
-                <MonsterStat stat={"STR"} statNum={data.strength} />
-                <MonsterStat stat={"DEX"} statNum={data.dexterity} />
-                <MonsterStat stat={"CON"} statNum={data.constitution} />
-                <MonsterStat stat={"INT"} statNum={data.intelligence} />
-                <MonsterStat stat={"WIS"} statNum={data.wisdom} />
-                <MonsterStat stat={"CHA"} statNum={data.charisma} />
-            </section>
-            <h1 className="h1__special_abilities">Special Abilities</h1>
-            {data.special_abilities.length > 0 ? (
-                <section className="monster__base_info">
-                    <>
-                        <ul className="monster__base_info_list ">
-                            {[...Object.keys(data.special_abilities)].map(
-                                (el, i) => {
-                                    return (
-                                        <li key={i}>
-                                            <span>
-                                                {
-                                                    data.special_abilities[el]
-                                                        .name
-                                                }
-                                                :
-                                            </span>{" "}
-                                            {data.special_abilities[el].desc}
-                                        </li>
-                                    );
-                                }
-                            )}
-                        </ul>
-                    </>
-                </section>
-            ) : (
-                <h1 className="h1__none">None</h1>
-            )}
         </>
     );
 };
