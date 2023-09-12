@@ -13,11 +13,12 @@ const handleLogin = async (req, res) => {
     const match = await bcrypt.compare(password, foundUser.password);
     if (match) {
         const roles = Object.values(foundUser.roles);
+        const username = foundUser.username;
         // create JWT
         const accessToken = jwt.sign(
             {
                 UserInfo: {
-                    username: foundUser.username,
+                    username: username,
                     roles: roles,
                 },
             },
@@ -25,7 +26,7 @@ const handleLogin = async (req, res) => {
             { expiresIn: "10s" }
         );
         const refreshToken = jwt.sign(
-            { username: foundUser.username },
+            { username: username },
             process.env.REFRESH_TOKEN_SECRET,
             { expiresIn: "1d" }
         );
@@ -33,7 +34,6 @@ const handleLogin = async (req, res) => {
         // Attach headers to user.
         foundUser.refreshToken = refreshToken;
         const result = await foundUser.save();
-        console.log(result);
 
         res.cookie("jwt", refreshToken, {
             httpOnly: true,
@@ -41,7 +41,7 @@ const handleLogin = async (req, res) => {
             maxAge: 24 * 60 * 60 * 1000,
             secure: true,
         });
-        res.json({ accessToken });
+        res.json({ roles, accessToken });
     } else {
         res.status(401).send("Password incorrect.");
     }

@@ -8,7 +8,7 @@ import "../form.css";
 const LOGIN_URL = "login";
 
 const Login = () => {
-    const { setAuth } = useAuth();
+    const { setAuth, persist, setPersist } = useAuth();
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -61,6 +61,14 @@ const Login = () => {
         }
     };
 
+    const togglePersist = () => {
+        setPersist((prev) => !prev);
+    };
+
+    useEffect(() => {
+        localStorage.setItem("persist", persist);
+    }, [persist]);
+
     return (
         <section>
             <HeaderBook
@@ -99,8 +107,9 @@ const Login = () => {
                     <input
                         id="remember_me"
                         type="checkbox"
+                        onChange={togglePersist}
+                        checked={persist}
                         name="input__rememberMe"
-                        defaultChecked={false}
                         className="input__rememberMe"
                     ></input>
                     Remember me

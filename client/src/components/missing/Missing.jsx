@@ -1,5 +1,5 @@
 const Missing = () => {
-    return <div>Page not found</div>;
+    return <div>Not authorized or missing</div>;
 };
 
 export default Missing;

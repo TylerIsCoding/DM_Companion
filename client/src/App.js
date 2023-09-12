@@ -68,7 +68,11 @@ const App = () => {
                 {/* Protected routes */}
                 <Route element={<PersistLogin />}>
                     <Route
-                        element={<RequireAuth allowedRoles={[ROLES.User]} />}
+                        element={
+                            <RequireAuth
+                                allowedRoles={[ROLES.User, ROLES.Guest]}
+                            />
+                        }
                     >
                         <Route
                             path="dashboard"

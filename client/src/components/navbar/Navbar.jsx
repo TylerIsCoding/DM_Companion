@@ -7,9 +7,10 @@ import "./navbar.css";
 const Navbar = () => {
     const { auth } = useAuth();
     const logout = useLogout();
+
     return (
         <>
-            {auth?.user ? (
+            {auth?.accessToken ? (
                 <nav className="nav__main">
                     <ul className="nav__list">
                         <li>
