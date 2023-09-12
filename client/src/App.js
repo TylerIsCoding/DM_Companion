@@ -12,9 +12,15 @@ import {
     Contact,
     Dashboard,
     RequireAuth,
+    PersistLogin,
 } from "./components";
 import "./App.css";
 import FormSearchMonster from "./components/forms/form_search_monster/FormSearchMonster";
+
+const ROLES = {
+    User: 2000,
+    Guest: 2001,
+};
 
 const App = () => {
     const [pageRight, setPageRight] = useState(<PageTitle />);
@@ -60,40 +66,43 @@ const App = () => {
                 />
 
                 {/* Protected routes */}
-                <Route element={<RequireAuth />}>
+                <Route element={<PersistLogin />}>
                     <Route
-                        path="dashboard"
-                        element={
-                            <Book
-                                contentLeft={<Dashboard />}
-                                contentRight={<PageTitle />}
-                            />
-                        }
-                    />
-                    <Route
-                        path="monsters"
-                        element={
-                            <Book
-                                contentLeft={
-                                    <FormSearchMonster
-                                        setPageRight={setPageRight}
-                                    />
-                                }
-                                contentRight={pageRight}
-                            />
-                        }
-                    />
-                    <Route
-                        path="about"
-                        element={
-                            <Book
-                                contentLeft={<About />}
-                                contentRight={<PageTitle />}
-                            />
-                        }
-                    />
+                        element={<RequireAuth allowedRoles={[ROLES.User]} />}
+                    >
+                        <Route
+                            path="dashboard"
+                            element={
+                                <Book
+                                    contentLeft={<Dashboard />}
+                                    contentRight={<PageTitle />}
+                                />
+                            }
+                        />
+                        <Route
+                            path="monsters"
+                            element={
+                                <Book
+                                    contentLeft={
+                                        <FormSearchMonster
+                                            setPageRight={setPageRight}
+                                        />
+                                    }
+                                    contentRight={pageRight}
+                                />
+                            }
+                        />
+                        <Route
+                            path="about"
+                            element={
+                                <Book
+                                    contentLeft={<About />}
+                                    contentRight={<PageTitle />}
+                                />
+                            }
+                        />
+                    </Route>
                 </Route>
-
                 {/* Catch all */}
                 <Route
                     path="*"

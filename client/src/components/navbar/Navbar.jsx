@@ -1,15 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import useLogout from "../../hooks/useLogout";
 import "./navbar.css";
 
 const Navbar = () => {
-    const { auth, setAuth } = useAuth();
-
-    const logout = async () => {
-        setAuth({});
-    };
-
+    const { auth } = useAuth();
+    const logout = useLogout();
     return (
         <>
             {auth?.user ? (

@@ -2,7 +2,6 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 
 const handleRefreshToken = async (req, res) => {
-    console.log("Requesting cookies...");
     const cookies = req.cookies;
     if (!cookies?.jwt) return res.sendStatus(401);
     const refreshToken = cookies.jwt;
@@ -21,10 +20,9 @@ const handleRefreshToken = async (req, res) => {
             const accessToken = jwt.sign(
                 { UserInfo: { username: decoded.username, roles: roles } },
                 process.env.ACCESS_TOKEN_SECRET,
-                { expiresIn: "10s" }
+                { expiresIn: "10m" }
             );
-            console.log(`Access token: ${accessToken}`);
-            res.json({ accessToken });
+            res.json({ roles, accessToken });
         }
     );
 };
