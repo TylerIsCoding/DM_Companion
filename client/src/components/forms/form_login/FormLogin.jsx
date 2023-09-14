@@ -3,6 +3,9 @@ import useAuth from "../../../hooks/useAuth";
 import axios from "../../../api/axios";
 import HeaderBook from "../../header_book/HeaderBook";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import useLocalStorage from "../../../hooks/useLocalStorage";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../form.css";
 
 const LOGIN_URL = "login";
@@ -17,8 +20,9 @@ const Login = () => {
     const userRef = useRef();
     const errRef = useRef();
 
-    const [user, setUser] = useState("");
+    const [user, setUser] = useLocalStorage("user", "");
     const [pwd, setPwd] = useState("");
+    const [userFocus, setUserFocus] = useState(false);
     const [errMsg, setErrMsg] = useState("");
 
     useEffect(() => {
@@ -75,7 +79,11 @@ const Login = () => {
                 title="Welcome!"
                 body="Please enter your details below"
             />
-            <form onSubmit={handleSubmit} className="form__login">
+            <form
+                onSubmit={handleSubmit}
+                className="form__login"
+                autoComplete="off"
+            >
                 <label className="label__form" htmlFor="username">
                     Username:{" "}
                     <input
@@ -89,7 +97,19 @@ const Login = () => {
                         required
                         className="input__text"
                         aria-describedby="uidnote"
+                        spellCheck="false"
+                        onFocus={() => setUserFocus(true)}
+                        onBlur={() => setUserFocus(false)}
                     ></input>
+                    <p
+                        id="uidnote"
+                        className={
+                            userFocus && user ? "instructions" : "offscreen"
+                        }
+                    >
+                        <FontAwesomeIcon icon={faInfoCircle} /> Username is case
+                        sensitive
+                    </p>
                 </label>
                 <label className="label__form" htmlFor="password">
                     Password:{" "}
