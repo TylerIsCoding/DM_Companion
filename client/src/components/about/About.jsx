@@ -17,7 +17,8 @@ const About = () => {
                 const response = await axiosPrivate.get("/users", {
                     signal: controller.signal,
                 });
-                isMounted && setUsers(response.data);
+                const userNames = response.data.map((user) => user.username);
+                isMounted && setUsers(userNames);
             } catch (e) {
                 console.error(e);
                 navigate("/login", {
@@ -41,7 +42,7 @@ const About = () => {
             {users?.length ? (
                 <ul>
                     {users.map((user, i) => (
-                        <li key={i}>{user?.username}</li>
+                        <li key={i}>{user}</li>
                     ))}
                 </ul>
             ) : (
