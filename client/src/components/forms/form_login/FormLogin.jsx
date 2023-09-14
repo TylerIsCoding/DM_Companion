@@ -3,7 +3,8 @@ import useAuth from "../../../hooks/useAuth";
 import axios from "../../../api/axios";
 import HeaderBook from "../../header_book/HeaderBook";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import useLocalStorage from "../../../hooks/useLocalStorage";
+import useInput from "../../../hooks/useInput";
+import useToggle from "../../../hooks/useToggle";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../form.css";
@@ -11,7 +12,7 @@ import "../form.css";
 const LOGIN_URL = "login";
 
 const Login = () => {
-    const { setAuth, persist, setPersist } = useAuth();
+    const { setAuth } = useAuth();
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -20,10 +21,11 @@ const Login = () => {
     const userRef = useRef();
     const errRef = useRef();
 
-    const [user, setUser] = useLocalStorage("user", "");
+    const [user, resetUser, userAttribs] = useInput("user", "");
     const [pwd, setPwd] = useState("");
     const [userFocus, setUserFocus] = useState(false);
     const [errMsg, setErrMsg] = useState("");
+    const [check, toggleCheck] = useToggle("persist", false);
 
     useEffect(() => {
         userRef.current.focus();
@@ -48,7 +50,7 @@ const Login = () => {
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
             setAuth({ user, pwd, roles, accessToken });
-            setUser(user);
+            resetUser();
             setPwd("");
             navigate(from, { replace: true });
         } catch (err) {
@@ -64,14 +66,6 @@ const Login = () => {
             errRef.current.focus();
         }
     };
-
-    const togglePersist = () => {
-        setPersist((prev) => !prev);
-    };
-
-    useEffect(() => {
-        localStorage.setItem("persist", persist);
-    }, [persist]);
 
     return (
         <section>
@@ -92,8 +86,7 @@ const Login = () => {
                         type="text"
                         name="input__username"
                         placeholder="Enter your username"
-                        value={user}
-                        onChange={(e) => setUser(e.target.value)}
+                        {...userAttribs}
                         required
                         className="input__text"
                         aria-describedby="uidnote"
@@ -127,8 +120,8 @@ const Login = () => {
                     <input
                         id="remember_me"
                         type="checkbox"
-                        onChange={togglePersist}
-                        checked={persist}
+                        onChange={toggleCheck}
+                        checked={check}
                         name="input__rememberMe"
                         className="input__rememberMe"
                     ></input>
