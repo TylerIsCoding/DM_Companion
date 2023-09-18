@@ -75,6 +75,93 @@ const MonsterInfo = ({ data }) => {
                         {data.size}{" "}
                     </li>
                 </ul>
+                <br />
+                <hr />
+                <h1 className="h1__immun_res">Senses</h1>
+                <ul className="monster__base_info_list monster__res_immun_list">
+                    <>
+                        {Object.keys(data.senses).length > 0
+                            ? [...Object.keys(data.senses)].map((el, i) => {
+                                  return (
+                                      <li key={i}>
+                                          {`${
+                                              el[0].toUpperCase() +
+                                              el.substr(1).replace("_", " ")
+                                          }: ${Object.values(
+                                              data.senses[el].toString()
+                                          ).join("")}`}
+                                      </li>
+                                  );
+                              })
+                            : "None"}
+                    </>
+                </ul>
+                <br />
+                <hr />
+                <h1 className="h1__immun_res">Damage Immunities</h1>
+                <ul className="monster__base_info_list monster__res_immun_list">
+                    <>
+                        {data.damage_immunities.length > 0
+                            ? data.damage_immunities.map((el, i) => {
+                                  return (
+                                      <li key={i}>
+                                          {`${
+                                              el[0].toUpperCase() + el.substr(1)
+                                          }`}
+                                      </li>
+                                  );
+                              })
+                            : "None"}
+                    </>
+                </ul>
+                <h1 className="h1__immun_res">Condition Immunities</h1>
+                <ul className="monster__base_info_list monster__res_immun_list">
+                    <>
+                        {data.condition_immunities.length > 0
+                            ? data.condition_immunities.map((el, i) => {
+                                  return (
+                                      <li key={i}>
+                                          {`${
+                                              el[0].toUpperCase() + el.substr(1)
+                                          }`}
+                                      </li>
+                                  );
+                              })
+                            : "None"}
+                    </>
+                </ul>
+                <h1 className="h1__immun_res">Damage Resistances</h1>
+                <ul className="monster__base_info_list monster__res_immun_list">
+                    <>
+                        {data.damage_resistances.length > 0
+                            ? data.damage_resistances.map((el, i) => {
+                                  return (
+                                      <li key={i}>
+                                          {`${
+                                              el[0].toUpperCase() + el.substr(1)
+                                          }`}
+                                      </li>
+                                  );
+                              })
+                            : "None"}
+                    </>
+                </ul>
+                <h1 className="h1__immun_res">Damage Vulnerabilites</h1>
+                <ul className="monster__base_info_list monster__res_immun_list">
+                    <>
+                        {data.damage_vulnerabilities.length > 0
+                            ? data.damage_vulnerabilities.map((el, i) => {
+                                  return (
+                                      <li key={i}>
+                                          {`${
+                                              el[0].toUpperCase() + el.substr(1)
+                                          }`}
+                                      </li>
+                                  );
+                              })
+                            : "None"}
+                    </>
+                </ul>
             </section>
         </>
     );

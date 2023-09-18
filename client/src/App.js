@@ -8,6 +8,7 @@ import {
     PageTitle,
     Login,
     SignUp,
+    MonsterManual,
     Layout,
     Contact,
     Dashboard,
@@ -15,7 +16,6 @@ import {
     PersistLogin,
 } from "./components";
 import "./App.css";
-import FormSearchMonster from "./components/forms/form_search_monster/FormSearchMonster";
 
 const ROLES = {
     User: 2000,
@@ -88,7 +88,7 @@ const App = () => {
                             element={
                                 <Book
                                     contentLeft={
-                                        <FormSearchMonster
+                                        <MonsterManual
                                             setPageRight={setPageRight}
                                         />
                                     }

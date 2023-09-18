@@ -133,14 +133,6 @@ const Login = () => {
                     Sign in
                 </button>
                 <button
-                    className="button__sign_in_google"
-                    type="button"
-                    onClick={(e) => e.preventDefault()}
-                >
-                    <img src="/images/google.png" alt="Google icon"></img>
-                    Sign in with Google
-                </button>
-                <button
                     className="button__sign_in_guest"
                     type="button"
                     onClick={(e) => e.preventDefault()}

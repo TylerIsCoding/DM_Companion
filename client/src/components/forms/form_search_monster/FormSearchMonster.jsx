@@ -59,10 +59,17 @@ const FormSearchMonster = ({ setPageRight }) => {
     return (
         <>
             <section className="search__section">
-                <HeaderBook
-                    title="Monster Manual"
-                    body="Search for a monster or enemy below"
-                />
+                <>
+                    {monster ? (
+                        <></>
+                    ) : (
+                        <HeaderBook
+                            title="Monster Manual"
+                            body="Search for a monster or enemy below"
+                        />
+                    )}
+                </>
+
                 <div className="search__row">
                     <form onSubmit={handleSearch} className="form_login">
                         <input

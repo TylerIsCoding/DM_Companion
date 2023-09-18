@@ -11,7 +11,7 @@
     padding: 10px;
     font-family: var(--font-family);
     line-height: 1.3rem;
-    max-height: 320px;
+    max-height: 350px;
     overflow-y: scroll;
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.25);
@@ -50,7 +50,7 @@
 .monster__stat_holder {
     display: flex;
     justify-content: space-evenly;
-    margin: 20px 0 20px 0;
+    margin: 20px 0 40px 0;
     text-align: center;
     font-family: var(--font-family);
     font-weight: bold;
@@ -66,7 +66,8 @@
     width: 320px;
 }
 
-.h1__special_abilities {
+.h1__special_abilities,
+.h1__immun_res {
     font-family: var(--font-family);
     font-weight: bold;
     text-decoration: underline;
@@ -96,4 +97,13 @@
 
 .legendary__container {
     max-height: 100px;
+}
+
+.h1__immun_res {
+    font-size: 16px;
+}
+
+.monster__res_immun_list {
+    text-align: center;
+    padding: 10px;
 }

@@ -229,13 +229,6 @@ const SignUp = () => {
                         !validName || !validPwd || !validMatch ? true : false
                     }
                 />
-                <Button
-                    text="Sign up with Google"
-                    className="button__sign_in_google"
-                    type="button"
-                    img="/images/google.png"
-                    alt="Google icon"
-                />
             </form>
             <div className="text__sign_up">
                 Already have an account?{" "}

@@ -4,7 +4,7 @@ export { default as Dashboard } from "./dashboard/Dashboard";
 export { default as RequireAuth } from "./require_auth/RequireAuth";
 export { default as PersistLogin } from "./persist_login/PersistLogin";
 export { default as Missing } from "./missing/Missing";
-export { default as MonsterInfo } from "./forms/form_search_monster/FormSearchMonster";
+export { default as MonsterManual } from "./forms/form_search_monster/FormSearchMonster";
 export { default as MonsterAbilities } from "./monsters/MonsterAbilities";
 export { default as Contact } from "./contact/Contact";
 export { default as Login } from "./forms/form_login/FormLogin";
