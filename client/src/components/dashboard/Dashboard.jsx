@@ -1,11 +1,17 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import jwt_decode from "jwt-decode";
 import "./dashboard.css";
 
 const Dashboard = () => {
     const navigate = useNavigate();
     const { auth } = useAuth();
+
+    const decoded = auth.accessToken ? jwt_decode(auth.accessToken) : undefined;
+
+    const user = auth.accessToken ? decoded?.UserInfo?.username : undefined;
+
     const handleClick = (route) => {
         navigate(route);
     };
@@ -14,7 +20,7 @@ const Dashboard = () => {
         <>
             <section className="container__home">
                 <img src="/images/dice.png" alt="dice" className="img__home" />
-                <h1 className="header__h1__home">Welcome, {auth.user}!</h1>
+                <h1 className="header__h1__home">Welcome, {user}!</h1>
                 <h3 className="header__h3__home">
                     Please choose an option below
                 </h3>
