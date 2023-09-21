@@ -9,6 +9,7 @@ import {
     Login,
     SignUp,
     MonsterManual,
+    Encounter,
     Layout,
     Contact,
     Dashboard,
@@ -102,6 +103,19 @@ const App = () => {
                                 <Book
                                     contentLeft={<About />}
                                     contentRight={<PageTitle />}
+                                />
+                            }
+                        />
+                        <Route
+                            path="encounter"
+                            element={
+                                <Book
+                                    contentLeft={
+                                        <Encounter
+                                            setPageRight={setPageRight}
+                                        />
+                                    }
+                                    contentRight={pageRight}
                                 />
                             }
                         />

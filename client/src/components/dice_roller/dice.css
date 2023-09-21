@@ -1,0 +1,66 @@
+.section__dice_buttons {
+    display: flex;
+    flex-direction: column;
+    height: 65px;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.container__dice_images {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.06);
+    border-radius: 100px;
+    padding: 10px;
+    gap: 15px;
+}
+
+.container__buttons {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.diceImage {
+    width: auto;
+    height: 65px;
+}
+
+.h1__dice_title {
+    font-family: var(--font-family);
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.button__dice {
+    background-color: #4c74a3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 60px;
+    text-align: center;
+    font-family: var(--font-family);
+    font-weight: bold;
+    font-size: 20px;
+    line-height: normal;
+    transition: all 0.2s;
+}
+
+.button__dice_red {
+    background-color: #a34c50;
+}
+
+.button__dice:hover {
+    background-color: #5c8fc9;
+    cursor: pointer;
+}
+
+.button__dice_red:hover {
+    background-color: #cc6065;
+}

@@ -42,7 +42,7 @@ const Dashboard = () => {
                     <button
                         className="button__sign_in button_home bg__blue"
                         type="button"
-                        onClick={() => handleClick("")}
+                        onClick={() => handleClick("/encounter")}
                     >
                         Encounter Tracker
                     </button>
