@@ -1,10 +1,17 @@
-const DiceImage = ({ src, alt }) => {
+const DiceImage = ({ diceCount, src, alt }) => {
     return (
-        <img
-            className="diceImage"
-            src={`/images/dice_images/${src}`}
-            alt={alt}
-        />
+        <>
+            <div className="diceHolder">
+                <span className={diceCount > 0 ? "diceCount" : "hidden"}>
+                    {diceCount}
+                </span>
+                <img
+                    className="diceImage"
+                    src={`/images/dice_images/${src}`}
+                    alt={alt}
+                />
+            </div>
+        </>
     );
 };
 

@@ -12,6 +12,7 @@
     flex-direction: row-reverse;
     justify-content: center;
     align-items: center;
+    position: relative;
     background: rgba(0, 0, 0, 0.06);
     border-radius: 100px;
     padding: 10px;
@@ -25,9 +26,33 @@
     justify-content: space-around;
 }
 
+.container__result {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+}
+
+.container__roll_result {
+    width: 200px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.06);
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-family);
+    font-size: 24px;
+    font-weight: bold;
+}
+
 .diceImage {
-    width: auto;
-    height: 65px;
+    width: 60px;
+    height: 60px;
 }
 
 .h1__dice_title {
@@ -38,7 +63,8 @@
     padding-bottom: 10px;
 }
 
-.button__dice {
+.button__dice,
+.button__roll_clear {
     background-color: #4c74a3;
     color: white;
     border: none;
@@ -56,11 +82,38 @@
     background-color: #a34c50;
 }
 
-.button__dice:hover {
+.button__dice:hover,
+.button__roll_clear:hover {
     background-color: #5c8fc9;
     cursor: pointer;
 }
 
 .button__dice_red:hover {
     background-color: #cc6065;
+}
+
+.diceHolder {
+    position: relative;
+}
+
+.diceCount {
+    position: absolute;
+    left: 0;
+    padding: 3px;
+    text-align: center;
+    background: red;
+    color: white;
+    font-family: var(--font-family);
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+.button__roll_clear {
+    font-weight: bold;
+    padding: 10px;
+    width: 100px;
 }
