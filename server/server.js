@@ -9,12 +9,20 @@ const verifyJWT = require("./middleware/verifyJWT");
 const cookieParser = require("cookie-parser");
 const credentials = require("./middleware/credentials");
 
-const [registerRoute, loginRoute, usersRoute, refreshRoute, logoutRoute] = [
+const [
+    registerRoute,
+    loginRoute,
+    usersRoute,
+    refreshRoute,
+    logoutRoute,
+    encounterRoute,
+] = [
     require("./routes/register"),
     require("./routes/auth"),
     require("./routes/users"),
     require("./routes/refresh"),
     require("./routes/logout"),
+    require("./routes/encounter"),
 ];
 
 require("dotenv").config({ path: "./config/.env" });
@@ -41,6 +49,7 @@ app.use("/signup", registerRoute);
 app.use("/login", loginRoute);
 app.use("/refresh", refreshRoute);
 app.use("/logout", logoutRoute);
+app.use("/encounter", encounterRoute);
 
 app.use(verifyJWT);
 app.use("/users", usersRoute);

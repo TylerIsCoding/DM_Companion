@@ -1,9 +1,33 @@
 import DiceImage from "./DiceImage";
 import DiceButtons from "./DiceButtons";
 import { useState } from "react";
+import axios from "../../api/axios";
 import "./dice.css";
 
-const DiceRoller = () => {
+const DiceRoller = ({ setRollHistory }) => {
+    const addRoll = async (roll) => {
+        try {
+            const response = await axios.put("/encounter/updateRolls", roll, {
+                withCredentials: true,
+            });
+            setRollHistory(response.data);
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+    const getRolls = async () => {
+        try {
+            const response = await axios.get("encounter/getRolls", {
+                withCredentials: true,
+            });
+            const rolls = response.data.rollHistory;
+            setRollHistory(rolls);
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
     const [d4Count, setD4Count] = useState(0);
     const [d6Count, setD6Count] = useState(0);
     const [d8Count, setD8Count] = useState(0);
@@ -21,6 +45,7 @@ const DiceRoller = () => {
         setD12Count(0);
         setD20Count(0);
         setCurrentRoll("");
+        getRolls();
     };
 
     const roll = () => {
@@ -43,7 +68,10 @@ const DiceRoller = () => {
         for (let i = 0; i < d20Count; i++) {
             total += Math.floor(Math.random() * 20 + 1);
         }
-        setCurrentRoll(total);
+        if (total > 0) {
+            addRoll(total);
+            setCurrentRoll(total);
+        }
     };
 
     return (

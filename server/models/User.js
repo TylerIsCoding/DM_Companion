@@ -17,6 +17,10 @@ const UserSchema = new mongoose.Schema({
         },
         Guest: Number,
     },
+    rollHistory: {
+        type: "Array",
+        default: [],
+    },
     refreshToken: {
         type: "String",
     },

@@ -146,7 +146,7 @@ const MonsterInfo = ({ data }) => {
                             : "None"}
                     </>
                 </ul>
-                <h1 className="h1__immun_res">Damage Vulnerabilites</h1>
+                <h1 className="h1__immun_res">Damage Vulnerabilities</h1>
                 <ul className="monster__base_info_list monster__res_immun_list">
                     <>
                         {data.damage_vulnerabilities.length > 0

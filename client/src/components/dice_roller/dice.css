@@ -117,3 +117,15 @@
     padding: 10px;
     width: 100px;
 }
+
+.ul__roll_history {
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.06);
+    text-align: center;
+    width: 100px;
+    min-height: 250px;
+    max-height: 250px;
+    padding: 20px;
+    overflow-y: scroll;
+}
