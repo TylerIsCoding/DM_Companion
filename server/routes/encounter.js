@@ -6,5 +6,6 @@ const verifyRoles = require("../middleware/verifyRoles");
 
 router.get("/getRolls", encounterController.getRolls);
 router.put("/updateRolls", encounterController.updateRolls);
+router.put("/clearRolls", encounterController.clearRolls);
 
 module.exports = router;

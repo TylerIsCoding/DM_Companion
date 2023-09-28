@@ -18,19 +18,40 @@ const RollHistory = ({ rollHistory, setRollHistory }) => {
         getRolls();
     }, []);
 
+    const clearRollHistory = async () => {
+        try {
+            const response = await axios.put("encounter/clearRolls", {
+                withCredentials: true,
+            });
+            const rolls = response.data.rollHistory;
+            setRollHistory(rolls);
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
     return (
         <>
-            <ul className="ul__roll_history">
-                {rollHistory.length > 0
-                    ? rollHistory.map((el, i) => {
-                          return (
-                              <li className="li__roll_history" key={i}>
-                                  {el}
-                              </li>
-                          );
-                      })
-                    : "No roll history"}
-            </ul>
+            <section className="section__roll_history">
+                <h1>Roll History</h1>
+                <ul className="ul__roll_history">
+                    {rollHistory
+                        ? rollHistory.map((el, i) => {
+                              return (
+                                  <li className="li__roll_history" key={i}>
+                                      {el}
+                                  </li>
+                              );
+                          })
+                        : ""}
+                </ul>
+                <button
+                    onClick={() => clearRollHistory()}
+                    className="button__history_clear button__dice_red"
+                >
+                    Clear
+                </button>
+            </section>
         </>
     );
 };
