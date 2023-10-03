@@ -169,6 +169,7 @@
 .ul__roll_history li {
     font-family: var(--font-family);
     font-size: 20px;
+    font-weight: bold;
     margin: 3px;
 }
 

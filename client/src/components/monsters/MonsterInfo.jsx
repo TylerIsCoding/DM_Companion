@@ -22,7 +22,7 @@ const MonsterInfo = ({ data }) => {
                     <li>
                         <span>Armor Type: </span>
                         {data.armor_class[0].type[0].toUpperCase() +
-                            data.armor_class[0].type.substr(1)}
+                            data.armor_class[0].type.substr(1) || ""}
                     </li>
                     <li>
                         <span>Alignment: </span>
@@ -119,13 +119,7 @@ const MonsterInfo = ({ data }) => {
                     <>
                         {data.condition_immunities.length > 0
                             ? data.condition_immunities.map((el, i) => {
-                                  return (
-                                      <li key={i}>
-                                          {`${
-                                              el[0].toUpperCase() + el.substr(1)
-                                          }`}
-                                      </li>
-                                  );
+                                  return <li key={i}>{`${el.name}`}</li>;
                               })
                             : "None"}
                     </>

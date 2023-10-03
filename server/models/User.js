@@ -21,6 +21,10 @@ const UserSchema = new mongoose.Schema({
         type: "Array",
         default: [],
     },
+    initMembers: {
+        type: "Object",
+        default: {},
+    },
     refreshToken: {
         type: "String",
     },
