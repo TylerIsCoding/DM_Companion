@@ -112,3 +112,36 @@
     width: 300px;
     height: 35px;
 }
+
+.li__init_player {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40px;
+    max-height: 40px;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.li__init_player > span {
+    position: absolute;
+    right: 10px;
+}
+
+.ul__player_list {
+    overflow-y: scroll;
+    gap: 10px;
+}
+
+.span__init_player {
+    display: flex;
+    gap: 5px;
+    font-size: 18px;
+}
+
+.span__init_player > *:hover {
+    color: rgb(163, 163, 163);
+    cursor: pointer;
+}
