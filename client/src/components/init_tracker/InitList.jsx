@@ -1,4 +1,13 @@
+import axios from "../../api/axios";
+
 const InitList = ({ add, setAdd }) => {
+    const getPlayers = async () => {
+        try {
+            const response = await axios.get("encounter/getPlayers");
+        } catch (e) {
+            console.error(e);
+        }
+    };
     const toggleAddPage = () => {
         const status = add;
         setAdd(!status);

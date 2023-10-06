@@ -1,13 +1,34 @@
+import { useState } from "react";
+import axios from "../../api/axios";
 import "./init_tracker.css";
 
 const AddPlayer = ({ add, setAdd }) => {
-    const addPlayer = () => {
-        console.log("");
+    const [name, setName] = useState("");
+    const [mod, setMod] = useState("");
+    const [color, setColor] = useState("#000000");
+
+    const addPlayer = async (e) => {
+        console.log(name, mod, color);
+        e.preventDefault();
+        try {
+            const response = await axios.put(
+                "encounter/addPlayer",
+                { name: name, modifier: mod, color: color },
+                {
+                    withCredentials: true,
+                }
+            );
+            if (response?.data) {
+                console.log(response.data);
+                setAdd(!add);
+            }
+        } catch (e) {
+            console.error(e);
+        }
     };
 
     const cancelAdd = () => {
-        const status = add;
-        setAdd(!status);
+        setAdd(!add);
     };
 
     return (
@@ -28,6 +49,9 @@ const AddPlayer = ({ add, setAdd }) => {
                         required
                         className="input__text input__init"
                         spellCheck="false"
+                        onChange={(e) => {
+                            setName(e.target.value);
+                        }}
                     ></input>
                 </label>
                 <label className="label__form" htmlFor="player_init_mod">
@@ -40,6 +64,9 @@ const AddPlayer = ({ add, setAdd }) => {
                         required
                         className="input__text input__init"
                         spellCheck="false"
+                        onChange={(e) => {
+                            setMod(e.target.value);
+                        }}
                     ></input>
                 </label>
                 <label className="label__form" htmlFor="player_init_color">
@@ -50,11 +77,17 @@ const AddPlayer = ({ add, setAdd }) => {
                         name="input__player_color"
                         required
                         className="input__text input__color"
+                        onChange={(e) => {
+                            setColor(e.target.value);
+                        }}
                     ></input>
                 </label>
             </form>
             <section className="section__init_tracker_btn_container">
-                <button className="button__init_tracker button__init_add">
+                <button
+                    onClick={addPlayer}
+                    className="button__init_tracker button__init_add"
+                >
                     Add
                 </button>
                 <button
