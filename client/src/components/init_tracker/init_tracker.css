@@ -1,0 +1,114 @@
+.section__init_tracker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.section__init_tracker > h1 {
+    font-family: var(--font-family);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.section__init_tracker > ul,
+.form__addPlayer {
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.06);
+    text-align: center;
+    width: 300px;
+    min-height: 250px;
+    max-height: 250px;
+    padding: 10px;
+    overflow-y: scroll;
+    border-radius: 10px;
+}
+
+.section__init_tracker > ul::-webkit-scrollbar {
+    width: 10px;
+}
+
+.section__init_tracker > ul::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.212);
+    border-radius: 5px;
+}
+
+.section__init_tracker > ul::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.438);
+}
+
+.section__init_tracker > ul > li {
+    font-family: var(--font-family);
+    font-size: 20px;
+    font-weight: bold;
+    margin: 3px;
+}
+
+.button__init_tracker {
+    background-color: #4c74a3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 60px;
+    text-align: center;
+    font-family: var(--font-family);
+    font-weight: bold;
+    font-size: 20px;
+    line-height: normal;
+    transition: all 0.2s;
+    padding: 10px;
+    width: 80px;
+}
+
+.button__init_tracker:hover {
+    cursor: pointer;
+    background-color: #5c8fc9;
+}
+
+.section__init_tracker_btn_container {
+    display: flex;
+    gap: 15px;
+}
+
+.button__init_start {
+    background-color: #488848;
+}
+
+.button__init_start:hover {
+    background-color: #3aa13a;
+}
+
+.button__init_clear,
+.button__init_cancel {
+    background-color: #a34c50;
+}
+
+.button__init_cancel {
+    width: 100px;
+}
+
+.button__init_clear:hover,
+.button__init_cancel:hover {
+    background-color: #cc6065;
+}
+
+.form__addPlayer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: left;
+    overflow-y: auto;
+}
+
+.input__init {
+    width: 290px;
+}
+
+.input__color {
+    width: 300px;
+    height: 35px;
+}
