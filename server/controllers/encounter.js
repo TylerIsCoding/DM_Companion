@@ -39,4 +39,27 @@ const clearRolls = async (req, res) => {
     return res.send(JSON.stringify(foundUser.rollHistory));
 };
 
-module.exports = { getRolls, updateRolls, clearRolls };
+const addPlayer = async (req, res) => {
+    const cookies = req.cookies;
+    if (!cookies?.jwt) return res.sendStatus(204); // No content status
+    const refreshToken = cookies.jwt;
+    const playerName = req.body.name;
+    const playerModifier = parseInt(req.body.modifier);
+    const playerColor = req.body.color;
+    const obj = {
+        name: playerName,
+        modifier: playerModifier,
+        color: playerColor,
+    };
+
+    const foundUser = await User.findOneAndUpdate(
+        { refreshToken },
+        {
+            $push: { initMembers: obj },
+        }
+    ).exec();
+
+    return res.send(`Player ${playerName} added...`);
+};
+
+module.exports = { getRolls, updateRolls, clearRolls, addPlayer };
