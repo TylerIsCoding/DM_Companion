@@ -1,19 +1,19 @@
-import { useState } from "react";
-import InitList from "./InitList";
 import axios from "../../api/axios";
+import { useState, useEffect } from "react";
 import "./init_tracker.css";
+import InitList from "./InitList";
 
-const AddPlayer = ({ page, setPage }) => {
+const EditPlayer = ({ page, setPage, id }) => {
     const [name, setName] = useState("");
     const [mod, setMod] = useState("");
-    const [color, setColor] = useState("#000000");
+    const [color, setColor] = useState("");
 
-    const addPlayer = async (e) => {
+    const editPlayer = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.put(
-                "encounter/addPlayer",
-                { name: name, modifier: mod, color: color },
+                "encounter/editPlayer",
+                { id: id, name: name, modifier: mod, color: color },
                 {
                     withCredentials: true,
                 }
@@ -27,25 +27,25 @@ const AddPlayer = ({ page, setPage }) => {
         }
     };
 
-    const cancelAdd = () => {
+    const cancelEdit = () => {
         setPage(<InitList page={page} setPage={setPage} />);
     };
 
     return (
         <>
-            <h1>Add Player</h1>
+            <h1>Edit Player</h1>
             <form
-                onSubmit={addPlayer}
+                onSubmit={editPlayer}
                 className="form__addPlayer"
                 autoComplete="off"
             >
                 <label className="label__form" htmlFor="player_name">
-                    Name:{" "}
+                    Name:
                     <input
                         id="player_name"
                         type="text"
                         name="input__player_name"
-                        placeholder="Enter player name"
+                        placeholder="Edit the player name"
                         required
                         className="input__text input__init"
                         spellCheck="false"
@@ -55,7 +55,7 @@ const AddPlayer = ({ page, setPage }) => {
                     ></input>
                 </label>
                 <label className="label__form" htmlFor="player_init_mod">
-                    Initiative Modifier:{" "}
+                    Initiative Modifier:
                     <input
                         id="player_init_mod"
                         type="number"
@@ -70,7 +70,7 @@ const AddPlayer = ({ page, setPage }) => {
                     ></input>
                 </label>
                 <label className="label__form" htmlFor="player_init_color">
-                    Choose color:{" "}
+                    Choose color:
                     <input
                         id="player_init_color"
                         type="color"
@@ -85,13 +85,13 @@ const AddPlayer = ({ page, setPage }) => {
             </form>
             <section className="section__init_tracker_btn_container">
                 <button
-                    onClick={addPlayer}
+                    onClick={editPlayer}
                     className="button__init_tracker button__init_add"
                 >
-                    Add
+                    Edit
                 </button>
                 <button
-                    onClick={() => cancelAdd()}
+                    onClick={() => cancelEdit()}
                     className="button__init_tracker button__init_cancel"
                 >
                     Cancel
@@ -101,4 +101,4 @@ const AddPlayer = ({ page, setPage }) => {
     );
 };
 
-export default AddPlayer;
+export default EditPlayer;

@@ -10,6 +10,7 @@ router.put("/clearRolls", encounterController.clearRolls);
 
 router.get("/getPlayers", encounterController.getPlayers);
 router.put("/addPlayer", encounterController.addPlayer);
+router.put("/editPlayer", encounterController.editPlayer);
 router.put("/clearPlayers", encounterController.clearPlayers);
 router.put("/deletePlayer", encounterController.deletePlayer);
 

@@ -1,8 +1,9 @@
 import axios from "../../api/axios";
 import { useEffect, useState } from "react";
 import Player from "./Player";
+import AddPlayer from "./AddPlayer";
 
-const InitList = ({ add, setAdd }) => {
+const InitList = ({ page, setPage }) => {
     const [playerArray, setPlayerArray] = useState("");
 
     const getPlayers = async () => {
@@ -20,11 +21,10 @@ const InitList = ({ add, setAdd }) => {
 
     useEffect(() => {
         getPlayers();
-    }, []);
+    }, [setPage]);
 
     const toggleAddPage = () => {
-        const status = add;
-        setAdd(!status);
+        setPage(<AddPlayer page={page} setPage={setPage} />);
     };
 
     const clearPlayers = async () => {
@@ -45,12 +45,15 @@ const InitList = ({ add, setAdd }) => {
             <h1>Initiative Tracker</h1>
             <ul className="ul__player_list">
                 {playerArray.length > 0
-                    ? playerArray.map((el, i) => {
+                    ? playerArray.map((el) => {
                           return (
                               <Player
+                                  page={page}
+                                  setPage={setPage}
                                   id={el[0].id}
                                   key={el[0].id}
                                   name={el[0].name}
+                                  mod={el[0].modifier}
                                   color={el[0].color}
                                   getPlayers={getPlayers}
                               />

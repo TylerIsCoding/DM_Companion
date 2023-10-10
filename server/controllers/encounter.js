@@ -72,6 +72,32 @@ const addPlayer = async (req, res) => {
     return res.send(`Player ${playerName} added...`);
 };
 
+const editPlayer = async (req, res) => {
+    const cookies = req.cookies;
+    if (!cookies?.jwt) return res.sendStatus(204); // No content status
+    const refreshToken = cookies.jwt;
+
+    const id = parseInt(req.body.id);
+    const playerName = req.body.name || "";
+    const playerModifier = parseInt(req.body.modifier) || 0;
+    const playerColor = req.body.color || "#000000";
+
+    console.log(id, playerName, playerModifier, playerColor);
+
+    const foundUser = await User.findOneAndUpdate(
+        { refreshToken },
+        {
+            initMembers: {
+                id: id,
+                name: playerName,
+                modifier: playerModifier,
+                color: playerColor,
+            },
+        }
+    );
+    return res.send(JSON.stringify(foundUser.initMembers));
+};
+
 const clearPlayers = async (req, res) => {
     const cookies = req.cookies;
     if (!cookies?.jwt) return res.sendStatus(204); // No content status
@@ -89,6 +115,8 @@ const deletePlayer = async (req, res) => {
     const cookies = req.cookies;
     if (!cookies?.jwt) return res.sendStatus(204); // No content status
     const refreshToken = cookies.jwt;
+
+    console.log(req.body.id);
 
     const foundUser = await User.findOneAndUpdate(
         { refreshToken },
@@ -109,5 +137,6 @@ module.exports = {
     getPlayers,
     addPlayer,
     deletePlayer,
+    editPlayer,
     clearPlayers,
 };
