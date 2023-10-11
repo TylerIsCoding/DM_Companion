@@ -26,7 +26,14 @@ const Player = ({ id, name, color, page, setPage, getPlayers }) => {
     };
 
     const edit = async () => {
-        setPage(<EditPlayer page={page} setPage={setPage} id={id} />);
+        setPage(
+            <EditPlayer
+                page={page}
+                setPage={setPage}
+                id={id}
+                playerName={name}
+            />
+        );
     };
 
     return (

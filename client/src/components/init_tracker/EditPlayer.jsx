@@ -1,12 +1,14 @@
 import axios from "../../api/axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./init_tracker.css";
 import InitList from "./InitList";
 
-const EditPlayer = ({ page, setPage, id }) => {
-    const [name, setName] = useState("");
+const EditPlayer = ({ page, setPage, id, playerName }) => {
+    const [name, setName] = useState(playerName);
     const [mod, setMod] = useState("");
     const [color, setColor] = useState("");
+
+    const namePlaceHolder = playerName;
 
     const editPlayer = async (e) => {
         e.preventDefault();
@@ -33,7 +35,7 @@ const EditPlayer = ({ page, setPage, id }) => {
 
     return (
         <>
-            <h1>Edit Player</h1>
+            <h1>Edit {namePlaceHolder}</h1>
             <form
                 onSubmit={editPlayer}
                 className="form__addPlayer"
@@ -45,7 +47,7 @@ const EditPlayer = ({ page, setPage, id }) => {
                         id="player_name"
                         type="text"
                         name="input__player_name"
-                        placeholder="Edit the player name"
+                        placeholder={namePlaceHolder}
                         required
                         className="input__text input__init"
                         spellCheck="false"

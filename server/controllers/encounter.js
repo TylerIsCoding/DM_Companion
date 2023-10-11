@@ -82,8 +82,6 @@ const editPlayer = async (req, res) => {
     const playerModifier = parseInt(req.body.modifier) || 0;
     const playerColor = req.body.color || "#000000";
 
-    console.log(id, playerName, playerModifier, playerColor);
-
     const foundUser = await User.findOneAndUpdate(
         { refreshToken, "initMembers.id": id },
         {
@@ -108,7 +106,7 @@ const clearPlayers = async (req, res) => {
         { initMembers: [] }
     ).exec();
 
-    return res.send(JSON.stringify(foundUser.initMembers));
+    return res.send(foundUser);
 };
 
 const deletePlayer = async (req, res) => {
@@ -127,7 +125,7 @@ const deletePlayer = async (req, res) => {
         }
     ).exec();
 
-    return res.send(JSON.stringify(foundUser.initMembers));
+    return res.send(foundUser);
 };
 
 module.exports = {
