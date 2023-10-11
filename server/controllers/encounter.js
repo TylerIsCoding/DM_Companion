@@ -85,17 +85,17 @@ const editPlayer = async (req, res) => {
     console.log(id, playerName, playerModifier, playerColor);
 
     const foundUser = await User.findOneAndUpdate(
-        { refreshToken },
+        { refreshToken, "initMembers.id": id },
         {
-            initMembers: {
-                id: id,
-                name: playerName,
-                modifier: playerModifier,
-                color: playerColor,
+            $set: {
+                "initMembers.$.id": id,
+                "initMembers.$.name": playerName,
+                "initMembers.$.modifier": playerModifier,
+                "initMembers.$.color": playerColor,
             },
         }
     );
-    return res.send(JSON.stringify(foundUser.initMembers));
+    return res.send(foundUser);
 };
 
 const clearPlayers = async (req, res) => {
