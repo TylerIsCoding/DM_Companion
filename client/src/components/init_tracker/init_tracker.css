@@ -48,6 +48,20 @@
     margin: 3px;
 }
 
+.section__player_roll {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: -5px;
+}
+
+.section__init_tracker_btn_container {
+    display: flex;
+    gap: 10px;
+}
+
 .button__init_tracker {
     background-color: #4c74a3;
     color: white;
@@ -69,17 +83,18 @@
     background-color: #5c8fc9;
 }
 
-.section__init_tracker_btn_container {
-    display: flex;
-    gap: 15px;
-}
-
-.button__init_start {
+.button__init_start,
+.button__init_begin {
     background-color: #488848;
 }
 
-.button__init_start:hover {
+.button__init_start:hover,
+.button__init_begin:hover {
     background-color: #3aa13a;
+}
+
+.button__init_begin {
+    width: 180px;
 }
 
 .button__init_clear,
@@ -96,6 +111,25 @@
     background-color: #cc6065;
 }
 
+.button__roll_init {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #4c74a3;
+    border: none;
+    font-size: 25px;
+    width: 36px;
+    height: 35px;
+    border-radius: 3px;
+    transition: all 0.2s;
+}
+
+.button__roll_init:hover {
+    cursor: pointer;
+    background-color: #5c8fc9;
+}
+
 .form__addPlayer {
     display: flex;
     flex-direction: column;
@@ -107,6 +141,12 @@
 .input__init {
     width: 290px;
     text-align: center;
+}
+
+.input__roll {
+    width: 230px;
+    text-align: center;
+    margin-top: 0;
 }
 
 .input__color {

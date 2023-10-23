@@ -6,7 +6,7 @@ import InitTracker from "../init_tracker/InitTracker";
 import "./encounter.css";
 
 const Encounter = ({ setPageRight }) => {
-    const [rollHistory, setRollHistory] = useState([]);
+    const [rollHistory, setRollHistory] = useState("");
 
     useEffect(() => {
         setPageRight(<PageTitle />);

@@ -4,9 +4,8 @@ import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EditPlayer from "./EditPlayer";
 
-const Player = ({ id, name, color, page, setPage, getPlayers }) => {
+const Player = ({ id, name, color, page, setPage, getPlayers, mod }) => {
     const trash = async () => {
-        console.log(id);
         try {
             const response = await axios.put(
                 "/encounter/deletePlayer",
@@ -32,12 +31,18 @@ const Player = ({ id, name, color, page, setPage, getPlayers }) => {
                 setPage={setPage}
                 id={id}
                 playerName={name}
+                modifier={mod}
+                playerColor={color}
             />
         );
     };
 
     return (
-        <li className="li__init_player" style={{ backgroundColor: color }}>
+        <li
+            key={id}
+            className="li__init_player"
+            style={{ backgroundColor: color }}
+        >
             {name
                 ? name.length > 15
                     ? (name = name.slice(0, 10) + "...")

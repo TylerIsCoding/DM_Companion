@@ -23,7 +23,7 @@ const updateRolls = async (req, res) => {
         { refreshToken },
         { $push: { rollHistory: { $each: [roll], $position: 0 } } }
     ).exec();
-    return res.send(JSON.stringify(foundUser.rollHistory));
+    return res.send(JSON.stringify(foundUser.rollHistory.flat()));
 };
 
 const clearRolls = async (req, res) => {
@@ -46,7 +46,13 @@ const getPlayers = async (req, res) => {
 
     // Is refreshToken in the DB?
     const foundUser = await User.findOne({ refreshToken }).exec();
-    return res.send(JSON.stringify(foundUser.initMembers));
+    const list = await foundUser.aggregate([
+        {
+            $unwind: "$initMembers",
+        },
+    ]);
+    console.log(foundUser.initMembers);
+    return res.send(foundUser);
 };
 
 const addPlayer = async (req, res) => {
@@ -69,7 +75,7 @@ const addPlayer = async (req, res) => {
             $push: { initMembers: obj },
         }
     ).exec();
-    return res.send(`Player ${playerName} added...`);
+    return res.send(foundUser);
 };
 
 const editPlayer = async (req, res) => {

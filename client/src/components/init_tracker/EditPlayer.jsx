@@ -3,15 +3,21 @@ import { useState } from "react";
 import "./init_tracker.css";
 import InitList from "./InitList";
 
-const EditPlayer = ({ page, setPage, id, playerName }) => {
+const EditPlayer = ({
+    page,
+    setPage,
+    id,
+    playerName,
+    modifier,
+    playerColor,
+}) => {
     const [name, setName] = useState(playerName);
-    const [mod, setMod] = useState("");
-    const [color, setColor] = useState("");
+    const [mod, setMod] = useState(modifier);
+    const [color, setColor] = useState(playerColor);
 
     const namePlaceHolder = playerName;
 
-    const editPlayer = async (e) => {
-        e.preventDefault();
+    const editPlayer = async () => {
         try {
             const response = await axios.put(
                 "encounter/editPlayer",
@@ -21,7 +27,6 @@ const EditPlayer = ({ page, setPage, id, playerName }) => {
                 }
             );
             if (response?.data) {
-                console.log(response.data);
                 setPage(<InitList page={page} setPage={setPage} />);
             }
         } catch (e) {
@@ -47,7 +52,7 @@ const EditPlayer = ({ page, setPage, id, playerName }) => {
                         id="player_name"
                         type="text"
                         name="input__player_name"
-                        placeholder={namePlaceHolder}
+                        value={name}
                         required
                         className="input__text input__init"
                         spellCheck="false"
@@ -62,7 +67,7 @@ const EditPlayer = ({ page, setPage, id, playerName }) => {
                         id="player_init_mod"
                         type="number"
                         name="input__player_init_mod"
-                        placeholder="Enter initiative modifier"
+                        value={mod || 0}
                         required
                         className="input__text input__init"
                         spellCheck="false"
@@ -77,6 +82,7 @@ const EditPlayer = ({ page, setPage, id, playerName }) => {
                         id="player_init_color"
                         type="color"
                         name="input__player_color"
+                        value={color}
                         required
                         className="input__text input__color"
                         onChange={(e) => {

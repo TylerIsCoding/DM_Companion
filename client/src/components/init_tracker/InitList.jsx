@@ -2,6 +2,7 @@ import axios from "../../api/axios";
 import { useEffect, useState } from "react";
 import Player from "./Player";
 import AddPlayer from "./AddPlayer";
+import EnterRolls from "./EnterRolls";
 
 const InitList = ({ page, setPage }) => {
     const [playerArray, setPlayerArray] = useState("");
@@ -12,7 +13,7 @@ const InitList = ({ page, setPage }) => {
                 withCredentials: true,
             });
             if (response?.data) {
-                setPlayerArray(response.data || []);
+                setPlayerArray(response.data.initMembers || []);
             }
         } catch (e) {
             console.error(e);
@@ -25,6 +26,17 @@ const InitList = ({ page, setPage }) => {
 
     const toggleAddPage = () => {
         setPage(<AddPlayer page={page} setPage={setPage} />);
+    };
+
+    const toggleEnterRollsPage = () => {
+        setPage(
+            <EnterRolls
+                page={page}
+                setPage={setPage}
+                playerArray={playerArray}
+                setPlayerArray={setPlayerArray}
+            />
+        );
     };
 
     const clearPlayers = async () => {
@@ -50,11 +62,10 @@ const InitList = ({ page, setPage }) => {
                               <Player
                                   page={page}
                                   setPage={setPage}
-                                  id={el[0].id}
-                                  key={el[0].id}
-                                  name={el[0].name}
-                                  mod={el[0].modifier}
-                                  color={el[0].color}
+                                  id={el.id}
+                                  name={el.name}
+                                  mod={el.modifier}
+                                  color={el.color}
                                   getPlayers={getPlayers}
                               />
                           );
@@ -74,7 +85,10 @@ const InitList = ({ page, setPage }) => {
                 >
                     Clear
                 </button>
-                <button className="button__init_tracker button__init_start">
+                <button
+                    onClick={() => toggleEnterRollsPage()}
+                    className="button__init_tracker button__init_start"
+                >
                     Start
                 </button>
             </section>

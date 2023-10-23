@@ -19,7 +19,6 @@ const AddPlayer = ({ page, setPage }) => {
                 }
             );
             if (response?.data) {
-                console.log(response.data);
                 setPage(<InitList page={page} setPage={setPage} />);
             }
         } catch (e) {
