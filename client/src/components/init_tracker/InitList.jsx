@@ -13,7 +13,7 @@ const InitList = ({ page, setPage }) => {
                 withCredentials: true,
             });
             if (response?.data) {
-                setPlayerArray(response.data.initMembers || []);
+                setPlayerArray(response.data.initMembers.flat() || []);
             }
         } catch (e) {
             console.error(e);
@@ -59,15 +59,21 @@ const InitList = ({ page, setPage }) => {
                 {playerArray.length > 0
                     ? playerArray.map((el) => {
                           return (
-                              <Player
-                                  page={page}
-                                  setPage={setPage}
-                                  id={el.id}
-                                  name={el.name}
-                                  mod={el.modifier}
-                                  color={el.color}
-                                  getPlayers={getPlayers}
-                              />
+                              <li
+                                  key={el.id}
+                                  className="li__init_player"
+                                  style={{ backgroundColor: el.color }}
+                              >
+                                  <Player
+                                      page={page}
+                                      setPage={setPage}
+                                      id={el.id}
+                                      name={el.name}
+                                      mod={el.modifier}
+                                      color={el.color}
+                                      getPlayers={getPlayers}
+                                  />
+                              </li>
                           );
                       })
                     : ""}

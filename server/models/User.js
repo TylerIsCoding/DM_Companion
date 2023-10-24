@@ -18,12 +18,10 @@ const UserSchema = new mongoose.Schema({
         Guest: Number,
     },
     rollHistory: {
-        type: "Array",
-        default: [],
+        type: "Object",
     },
     initMembers: {
-        type: "Array",
-        default: [],
+        type: "Object",
     },
     refreshToken: {
         type: "String",

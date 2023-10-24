@@ -7,7 +7,7 @@ const getRolls = async (req, res) => {
 
     // Is refreshToken in the DB?
     const foundUser = await User.findOne({ refreshToken }).exec();
-    return res.send(JSON.stringify(foundUser));
+    return res.send(foundUser);
 };
 
 const updateRolls = async (req, res) => {
@@ -23,7 +23,7 @@ const updateRolls = async (req, res) => {
         { refreshToken },
         { $push: { rollHistory: { $each: [roll], $position: 0 } } }
     ).exec();
-    return res.send(JSON.stringify(foundUser.rollHistory.flat()));
+    return res.send(JSON.stringify(foundUser.rollHistory));
 };
 
 const clearRolls = async (req, res) => {
@@ -46,12 +46,6 @@ const getPlayers = async (req, res) => {
 
     // Is refreshToken in the DB?
     const foundUser = await User.findOne({ refreshToken }).exec();
-    const list = await foundUser.aggregate([
-        {
-            $unwind: "$initMembers",
-        },
-    ]);
-    console.log(foundUser.initMembers);
     return res.send(foundUser);
 };
 
@@ -75,6 +69,7 @@ const addPlayer = async (req, res) => {
             $push: { initMembers: obj },
         }
     ).exec();
+
     return res.send(foundUser);
 };
 
@@ -119,8 +114,6 @@ const deletePlayer = async (req, res) => {
     const cookies = req.cookies;
     if (!cookies?.jwt) return res.sendStatus(204); // No content status
     const refreshToken = cookies.jwt;
-
-    console.log(req.body.id);
 
     const foundUser = await User.findOneAndUpdate(
         { refreshToken },
