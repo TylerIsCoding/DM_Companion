@@ -1,14 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { faDiceThree } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const PlayerRoll = ({ id, name, color }) => {
+const PlayerRoll = ({
+    id,
+    index,
+    name,
+    color,
+    playerArray,
+    setPlayerArray,
+}) => {
     const [roll, setRoll] = useState("");
+    const player = playerArray[index];
+
+    const update = (diceRoll) => {
+        setRoll(diceRoll);
+        setPlayerArray(playerArray);
+    };
 
     const rollDice = () => {
         const diceRoll = Math.floor(Math.random() * 20 + 1);
-        setRoll(diceRoll);
+        update(diceRoll);
     };
+
+    useEffect(() => {
+        player.totalRoll = Number(roll) + player.modifier;
+    }, [roll]);
 
     return (
         <>
@@ -30,7 +47,7 @@ const PlayerRoll = ({ id, name, color }) => {
                         name.length > 15 ? name.slice(0, 10) + "..." : name
                     }`}
                     onChange={(e) => {
-                        setRoll(e.target.value);
+                        update(e.target.value);
                     }}
                 />
                 <button

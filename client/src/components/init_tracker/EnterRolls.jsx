@@ -4,32 +4,33 @@ import InitList from "./InitList";
 import "./init_tracker.css";
 
 const EnterRolls = ({ page, setPage, playerArray, setPlayerArray }) => {
-    const array = useState(playerArray);
-
     const cancel = () => {
         setPage(<InitList page={page} setPage={setPage} />);
     };
 
     const combat = () => {
-        playerArray.forEach((el) => {
-            console.log(el.totalRoll);
-        });
+        const sorted = playerArray.sort((a, b) => b.totalRoll - a.totalRoll);
+        setPlayerArray(sorted);
+        console.log(playerArray);
     };
 
     return (
         <>
             <h1>Enter Rolls</h1>
             <ul className="ul__player_list">
-                {array
-                    ? array[0].map((el, i) => {
+                {playerArray
+                    ? playerArray.map((el, i) => {
                           return (
                               <li key={i}>
                                   <PlayerRoll
                                       id={el.id}
+                                      index={i}
                                       name={el.name}
                                       color={el.color}
                                       mod={el.modifier}
                                       total={el.totalRoll}
+                                      playerArray={playerArray}
+                                      setPlayerArray={setPlayerArray}
                                   />
                               </li>
                           );
