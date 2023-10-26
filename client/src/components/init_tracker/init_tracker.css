@@ -154,7 +154,8 @@
     height: 35px;
 }
 
-.li__init_player {
+.li__init_player,
+.div__init_player {
     position: relative;
     display: flex;
     justify-content: center;
@@ -166,9 +167,14 @@
     border-radius: 10px;
 }
 
-.li__init_player > span {
+.li__init_player > span,
+.div__init_player > span {
     position: absolute;
     right: 10px;
+}
+
+.div__init_player {
+    margin-bottom: 10px;
 }
 
 .ul__player_list {

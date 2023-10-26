@@ -12,13 +12,12 @@ const PlayerRoll = ({ id, name, color }) => {
 
     return (
         <>
-            <li
-                key={id}
-                className="li__init_player"
+            <div
+                className="div__init_player"
                 style={{ backgroundColor: color }}
             >
                 {name}
-            </li>
+            </div>
             <section className="section__player_roll">
                 <input
                     id="player_roll"

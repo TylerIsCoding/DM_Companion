@@ -4,7 +4,8 @@ import InitList from "./InitList";
 import "./init_tracker.css";
 
 const EnterRolls = ({ page, setPage, playerArray }) => {
-    const array = useState(playerArray.flat());
+    const array = useState(playerArray);
+
     const cancel = () => {
         setPage(<InitList page={page} setPage={setPage} />);
     };
@@ -16,11 +17,13 @@ const EnterRolls = ({ page, setPage, playerArray }) => {
                 {array
                     ? array[0].map((el, i) => {
                           return (
-                              <PlayerRoll
-                                  id={el.id}
-                                  name={el.name}
-                                  color={el.color}
-                              />
+                              <li key={i}>
+                                  <PlayerRoll
+                                      id={el.id}
+                                      name={el.name}
+                                      color={el.color}
+                                  />
+                              </li>
                           );
                       })
                     : ""}
