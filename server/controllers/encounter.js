@@ -61,6 +61,7 @@ const addPlayer = async (req, res) => {
         name: playerName,
         modifier: playerModifier,
         color: playerColor,
+        totalRoll: 0,
     };
 
     const foundUser = await User.findOneAndUpdate(
