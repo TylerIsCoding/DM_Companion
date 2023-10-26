@@ -13,7 +13,7 @@ const InitList = ({ page, setPage }) => {
                 withCredentials: true,
             });
             if (response?.data) {
-                setPlayerArray(response.data.initMembers.flat() || []);
+                setPlayerArray(response.data.initMembers || []);
             }
         } catch (e) {
             console.error(e);

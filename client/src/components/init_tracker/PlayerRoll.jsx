@@ -16,19 +16,19 @@ const PlayerRoll = ({ id, name, color }) => {
                 className="div__init_player"
                 style={{ backgroundColor: color }}
             >
-                {name}
+                {name.length > 15 ? name.slice(0, 10) + "..." : name}
             </div>
             <section className="section__player_roll">
                 <input
-                    id="player_roll"
+                    id={`player_roll_${id}`}
                     type="number"
                     value={roll}
                     min={1}
                     max={20}
                     className="input__text input__roll"
-                    placeholder={`Enter ${
-                        name.endsWith("s") ? name + "'" : name + "'s"
-                    } roll`}
+                    placeholder={`Enter roll for ${
+                        name.length > 15 ? name.slice(0, 10) + "..." : name
+                    }`}
                     onChange={(e) => {
                         setRoll(e.target.value);
                     }}

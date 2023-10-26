@@ -3,11 +3,17 @@ import PlayerRoll from "./PlayerRoll";
 import InitList from "./InitList";
 import "./init_tracker.css";
 
-const EnterRolls = ({ page, setPage, playerArray }) => {
+const EnterRolls = ({ page, setPage, playerArray, setPlayerArray }) => {
     const array = useState(playerArray);
 
     const cancel = () => {
         setPage(<InitList page={page} setPage={setPage} />);
+    };
+
+    const combat = () => {
+        playerArray.forEach((el) => {
+            console.log(el.totalRoll);
+        });
     };
 
     return (
@@ -22,6 +28,8 @@ const EnterRolls = ({ page, setPage, playerArray }) => {
                                       id={el.id}
                                       name={el.name}
                                       color={el.color}
+                                      mod={el.modifier}
+                                      total={el.totalRoll}
                                   />
                               </li>
                           );
@@ -36,7 +44,7 @@ const EnterRolls = ({ page, setPage, playerArray }) => {
                     Cancel
                 </button>
                 <button
-                    // onClick=""
+                    onClick={() => combat()}
                     className="button__init_tracker button__init_begin"
                 >
                     Begin Combat!
