@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const PlayerRoll = ({ id, name, color, playerArray }) => {
     const [roll, setRoll] = useState("");
+    let player = playerArray.find((item) => item.id === id);
 
     const rollDice = () => {
         const diceRoll = Math.floor(Math.random() * 20 + 1);
@@ -15,10 +16,8 @@ const PlayerRoll = ({ id, name, color, playerArray }) => {
     };
 
     useEffect(() => {
-        let player = playerArray.find((item) => item.id === id);
-        console.log(`updated ${player.name} roll: ${roll}`);
         player.totalRoll = Number(roll) + player.modifier;
-    }, [roll]);
+    }, [roll, player]);
 
     return (
         <>

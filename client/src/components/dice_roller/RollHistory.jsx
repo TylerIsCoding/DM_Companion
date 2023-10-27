@@ -16,7 +16,7 @@ const RollHistory = ({ rollHistory, setRollHistory }) => {
         };
 
         getRolls();
-    }, []);
+    }, [setRollHistory]);
 
     const clearRollHistory = async () => {
         try {
