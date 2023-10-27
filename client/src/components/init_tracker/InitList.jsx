@@ -6,6 +6,7 @@ import EnterRolls from "./EnterRolls";
 
 const InitList = ({ page, setPage }) => {
     const [playerArray, setPlayerArray] = useState("");
+    const [editable, setEditable] = useState(true);
 
     const getPlayers = async () => {
         try {
@@ -22,7 +23,8 @@ const InitList = ({ page, setPage }) => {
 
     useEffect(() => {
         getPlayers();
-    }, [setPage]);
+        setEditable(true);
+    }, [setPage, editable]);
 
     const toggleAddPage = () => {
         setPage(<AddPlayer page={page} setPage={setPage} />);
@@ -72,6 +74,7 @@ const InitList = ({ page, setPage }) => {
                                       mod={el.modifier}
                                       color={el.color}
                                       getPlayers={getPlayers}
+                                      editable={editable}
                                   />
                               </li>
                           );

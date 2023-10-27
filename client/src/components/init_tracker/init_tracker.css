@@ -130,6 +130,14 @@
     background-color: #5c8fc9;
 }
 
+.button__end_combat {
+    width: 140px;
+}
+
+.button__next_turn {
+    width: 120px;
+}
+
 .form__addPlayer {
     display: flex;
     flex-direction: column;
@@ -180,6 +188,17 @@
 .ul__player_list {
     overflow-y: scroll;
     gap: 10px;
+}
+
+.ul__combat li:first-of-type {
+    margin-bottom: 10px;
+    border: 5px solid rgb(0, 0, 0);
+}
+
+.ul__combat h1 {
+    font-family: var(--font-family);
+    font-weight: bold;
+    padding-left: 10px;
 }
 
 .span__init_player {

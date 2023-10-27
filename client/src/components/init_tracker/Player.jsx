@@ -4,7 +4,16 @@ import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EditPlayer from "./EditPlayer";
 
-const Player = ({ id, name, page, setPage, getPlayers, mod, color }) => {
+const Player = ({
+    id,
+    name,
+    page,
+    setPage,
+    getPlayers,
+    mod,
+    color,
+    editable,
+}) => {
     const trash = async () => {
         try {
             const response = await axios.put(
@@ -44,10 +53,14 @@ const Player = ({ id, name, page, setPage, getPlayers, mod, color }) => {
                     ? (name = name.slice(0, 10) + "...")
                     : name
                 : ""}
-            <span className="span__init_player">
-                <FontAwesomeIcon icon={faEdit} onClick={() => edit()} />
-                <FontAwesomeIcon icon={faTrash} onClick={() => trash()} />
-            </span>
+            {editable ? (
+                <span className="span__init_player">
+                    <FontAwesomeIcon icon={faEdit} onClick={() => edit()} />
+                    <FontAwesomeIcon icon={faTrash} onClick={() => trash()} />
+                </span>
+            ) : (
+                ""
+            )}
         </>
     );
 };

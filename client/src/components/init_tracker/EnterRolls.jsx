@@ -1,5 +1,6 @@
 import PlayerRoll from "./PlayerRoll";
 import InitList from "./InitList";
+import Combat from "./Combat";
 import "./init_tracker.css";
 
 const EnterRolls = ({ page, setPage, playerArray, setPlayerArray }) => {
@@ -10,7 +11,14 @@ const EnterRolls = ({ page, setPage, playerArray, setPlayerArray }) => {
     const combat = () => {
         const sorted = playerArray.sort((a, b) => b.totalRoll - a.totalRoll);
         setPlayerArray(sorted);
-        console.log(playerArray);
+        setPage(
+            <Combat
+                page={page}
+                setPage={setPage}
+                playerArray={playerArray}
+                setPlayerArray={setPlayerArray}
+            />
+        );
     };
 
     return (
