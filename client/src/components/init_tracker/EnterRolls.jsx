@@ -1,4 +1,3 @@
-import { useState } from "react";
 import PlayerRoll from "./PlayerRoll";
 import InitList from "./InitList";
 import "./init_tracker.css";
@@ -24,7 +23,6 @@ const EnterRolls = ({ page, setPage, playerArray, setPlayerArray }) => {
                               <li key={i}>
                                   <PlayerRoll
                                       id={el.id}
-                                      index={i}
                                       name={el.name}
                                       color={el.color}
                                       mod={el.modifier}
