@@ -1,5 +1,6 @@
 const User = require("../models/User");
 
+// Dice Roller API requests
 const getRolls = async (req, res) => {
     const cookies = req.cookies;
     if (!cookies?.jwt) return res.sendStatus(204); // No content status
@@ -38,6 +39,7 @@ const clearRolls = async (req, res) => {
     return res.send(JSON.stringify(foundUser.rollHistory));
 };
 
+// Initiative Tracker API Requests
 const getPlayers = async (req, res) => {
     const cookies = req.cookies;
     if (!cookies?.jwt) return res.sendStatus(204); // No content status
@@ -126,12 +128,47 @@ const deletePlayer = async (req, res) => {
     return res.send(foundUser);
 };
 
+// Health Tracker API requests
 const getEnemies = async (req, res) => {
     const cookies = req.cookies;
     if (!cookies?.jwt) return res.sendStatus(204); // No content status
     const refreshToken = cookies.jwt;
 
     const foundUser = await User.findOne({ refreshToken }).exec();
+    return res.send(foundUser);
+};
+
+const addEnemy = async (req, res) => {
+    const cookies = req.cookies;
+    if (!cookies?.jwt) return res.sendStatus(204); // No content status
+    const refreshToken = cookies.jwt;
+
+    const obj = {
+        id: Math.floor(Math.random() * 100000000000),
+        name: req.body.name,
+        hp: req.body.hp,
+    };
+
+    const foundUser = await User.findOneAndUpdate(
+        { refreshToken },
+        {
+            $push: { enemies: obj },
+        }
+    ).exec();
+
+    return res.send(foundUser);
+};
+
+const clearEnemies = async (req, res) => {
+    const cookies = req.cookies;
+    if (!cookies?.jwt) return res.sendStatus(204); // No content status
+    const refreshToken = cookies.jwt;
+
+    const foundUser = await User.findOneAndUpdate(
+        { refreshToken },
+        { enemies: [] }
+    ).exec();
+
     return res.send(foundUser);
 };
 
@@ -145,4 +182,6 @@ module.exports = {
     editPlayer,
     clearPlayers,
     getEnemies,
+    addEnemy,
+    clearEnemies,
 };
