@@ -5,7 +5,6 @@ const getRolls = async (req, res) => {
     if (!cookies?.jwt) return res.sendStatus(204); // No content status
     const refreshToken = cookies.jwt;
 
-    // Is refreshToken in the DB?
     const foundUser = await User.findOne({ refreshToken }).exec();
     return res.send(foundUser);
 };
@@ -44,7 +43,6 @@ const getPlayers = async (req, res) => {
     if (!cookies?.jwt) return res.sendStatus(204); // No content status
     const refreshToken = cookies.jwt;
 
-    // Is refreshToken in the DB?
     const foundUser = await User.findOne({ refreshToken }).exec();
     return res.send(foundUser);
 };
@@ -128,6 +126,15 @@ const deletePlayer = async (req, res) => {
     return res.send(foundUser);
 };
 
+const getEnemies = async (req, res) => {
+    const cookies = req.cookies;
+    if (!cookies?.jwt) return res.sendStatus(204); // No content status
+    const refreshToken = cookies.jwt;
+
+    const foundUser = await User.findOne({ refreshToken }).exec();
+    return res.send(foundUser);
+};
+
 module.exports = {
     getRolls,
     updateRolls,
@@ -137,4 +144,5 @@ module.exports = {
     deletePlayer,
     editPlayer,
     clearPlayers,
+    getEnemies,
 };

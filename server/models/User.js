@@ -23,6 +23,9 @@ const UserSchema = new mongoose.Schema({
     initMembers: {
         type: "Object",
     },
+    enemies: {
+        type: "Object",
+    },
     refreshToken: {
         type: "String",
     },
