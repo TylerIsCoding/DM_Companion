@@ -146,7 +146,9 @@ const addEnemy = async (req, res) => {
     const obj = {
         id: Math.floor(Math.random() * 100000000000),
         name: req.body.name,
-        hp: req.body.hp,
+        hp: Number(req.body.hp),
+        type: req.body.type,
+        color: req.body.color,
     };
 
     const foundUser = await User.findOneAndUpdate(
