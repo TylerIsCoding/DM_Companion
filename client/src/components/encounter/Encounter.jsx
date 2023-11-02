@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import PageTitle from "../page_title/PageTitle";
 import DiceRoller from "../dice_roller/DiceRoller";
 import RollHistory from "../dice_roller/RollHistory";
 import InitTracker from "../init_tracker/InitTracker";
+import HealthTracker from "../health_tracker/HealthTracker";
 import "./encounter.css";
 
 const Encounter = ({ setPageRight }) => {
     const [rollHistory, setRollHistory] = useState("");
 
     useEffect(() => {
-        setPageRight(<PageTitle />);
+        setPageRight(<HealthTracker />);
     }, [setPageRight]);
 
     return (

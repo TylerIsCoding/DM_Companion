@@ -1,0 +1,85 @@
+.section__health_tracker {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 35px;
+    margin-top: 45px;
+}
+
+.section__health_tracker > h1 {
+    font-family: var(--font-family);
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.section__health_tracker_btn_container {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.ul__enemy_list {
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.06);
+    text-align: center;
+    width: 450px;
+    min-height: 540px;
+    max-height: 540px;
+    padding: 10px;
+    overflow-y: scroll;
+    border-radius: 10px;
+}
+
+.ul__enemy_list::-webkit-scrollbar {
+    width: 10px;
+}
+
+.ul__enemy_list::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.212);
+    border-radius: 5px;
+}
+
+.ul__enemy_list::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.438);
+}
+
+.ul__enemy_list > li {
+    font-family: var(--font-family);
+    font-size: 20px;
+    font-weight: bold;
+    margin: 3px;
+}
+
+.button__clear_enemies,
+.button__add_enemy {
+    background-color: #4c74a3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 150px;
+    text-align: center;
+    font-family: var(--font-family);
+    font-weight: bold;
+    font-size: 20px;
+    line-height: normal;
+    transition: all 0.2s;
+    padding: 10px;
+}
+
+.button__clear_enemies {
+    width: 120px;
+    background-color: #a34c50;
+}
+
+.button__add_enemy:hover {
+    cursor: pointer;
+    background-color: #5c8fc9;
+}
+
+.button__clear_enemies:hover {
+    cursor: pointer;
+    background-color: #cc6065;
+}
