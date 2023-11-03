@@ -90,15 +90,15 @@ const AddEnemy = ({ page, setPage, enemyArray, setEnemyArray }) => {
                         name="input__enemy_hp"
                         placeholder="Enter hit points"
                         required
-                        min={1}
+                        min={0}
                         max={9999}
                         className="input__text input__init"
                         spellCheck="false"
                         onChange={(e) => {
                             if (e.target.value > 9999) {
                                 e.target.value = 9999;
-                            } else if (e.target.value < 1) {
-                                e.target.value = 1;
+                            } else if (e.target.value < 0) {
+                                e.target.value = 0;
                             }
                             setHp(e.target.value);
                         }}

@@ -34,6 +34,10 @@
     padding: 6px;
     width: 90%;
     margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .section__enemy_info_container {
@@ -102,6 +106,7 @@
 
 .ul__enemy_list {
     overflow-y: scroll;
+    gap: 20px;
 }
 
 .ul__enemy_list::-webkit-scrollbar {
@@ -219,7 +224,7 @@
 }
 
 .span__enemy_icons {
-    color: rgb(80, 80, 80);
+    color: rgb(131, 131, 131);
     padding: 10px;
 }
 
@@ -230,7 +235,7 @@
 }
 
 .span__enemy_icons *:hover {
-    color: rgb(110, 110, 110);
+    color: rgb(58, 58, 58);
 }
 
 #color_npc,

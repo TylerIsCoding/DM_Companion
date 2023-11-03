@@ -1,11 +1,12 @@
 import "./health_tracker.css";
-import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faEdit, faSkull } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "../../api/axios";
 
 const Enemy = ({ id, name, hp, maxHP, color, getEnemies }) => {
     const [healthMod, setHealthMod] = useState();
+    const [nameDisplay, setNameDisplay] = useState(name);
 
     const addHealth = async () => {
         const adj =
@@ -56,17 +57,33 @@ const Enemy = ({ id, name, hp, maxHP, color, getEnemies }) => {
         }
     };
 
+    useEffect(() => {
+        if (name.length > 30) {
+            setNameDisplay(name.slice(0, 20) + "...");
+        }
+    }, []);
+
     return (
         <>
             <section
                 className="section__enemy_name_container"
                 style={{ backgroundColor: color }}
             >
-                {name
-                    ? name.length > 30
-                        ? (name = name.slice(0, 27) + "...")
-                        : name
-                    : "N/A"}
+                {hp === 0 ? (
+                    <>
+                        <FontAwesomeIcon
+                            icon={faSkull}
+                            className="icon__skull"
+                        />
+                        {nameDisplay}
+                        <FontAwesomeIcon
+                            icon={faSkull}
+                            className="icon__skull"
+                        />
+                    </>
+                ) : (
+                    nameDisplay
+                )}
             </section>
             <section className="section__enemy_info_container">
                 <section className="section__enemy_hp">
