@@ -27,6 +27,39 @@
     padding-top: 20px;
 }
 
+.section__enemy_name_container {
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 6px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.section__enemy_info_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    height: 80px;
+}
+
+.section__enemy_hp {
+    width: 150px;
+}
+
+.section__enemy_hp h1 {
+    text-decoration: underline;
+    padding-bottom: 5px;
+    font-size: 16px;
+}
+
+.section__enemy_hp span {
+    font-size: 28px;
+}
+
 .input__type {
     cursor: pointer;
     height: 20px;
@@ -144,6 +177,21 @@
     width: 450px;
 }
 
+.span__enemy_icons {
+    color: black;
+    padding: 10px;
+}
+
+.span__enemy_icons * {
+    cursor: pointer;
+    padding: 5px;
+    transition: all 0.05s;
+}
+
+.span__enemy_icons *:hover {
+    color: white;
+}
+
 #color_npc,
 #color_player,
 #color_enemy {
@@ -157,4 +205,29 @@
     width: 400px;
     height: 40px;
     font-size: 18px;
+}
+
+#health_mod {
+    width: 80px;
+    height: 50px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.808);
+    border: none;
+    margin: 10px;
+    font-size: 20px;
+    font-family: var(--font-family);
+    font-weight: bold;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
 }

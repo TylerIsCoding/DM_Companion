@@ -1,6 +1,7 @@
 import "./health_tracker.css";
 import axios from "../../api/axios";
 import AddEnemy from "./AddEnemy";
+import Enemy from "./Enemy";
 import { useEffect, useState } from "react";
 
 const HealthTrackerList = ({ page, setPage }) => {
@@ -53,7 +54,16 @@ const HealthTrackerList = ({ page, setPage }) => {
             <ul className="ul__enemy_list">
                 {enemyArray.length > 0
                     ? enemyArray.map((el, i) => {
-                          return <li key={i} className="li__enemy"></li>;
+                          return (
+                              <li key={i} className="li__enemy">
+                                  <Enemy
+                                      id={el.id}
+                                      name={el.name}
+                                      hp={el.hp}
+                                      color={el.color}
+                                  />
+                              </li>
+                          );
                       })
                     : ""}
             </ul>
