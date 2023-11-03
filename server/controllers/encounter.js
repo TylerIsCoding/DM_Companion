@@ -147,6 +147,7 @@ const addEnemy = async (req, res) => {
         id: Math.floor(Math.random() * 100000000000),
         name: req.body.name,
         hp: Number(req.body.hp),
+        maxHP: Number(req.body.hp),
         type: req.body.type,
         color: req.body.color,
     };
@@ -155,6 +156,23 @@ const addEnemy = async (req, res) => {
         { refreshToken },
         {
             $push: { enemies: obj },
+        }
+    ).exec();
+
+    return res.send(foundUser);
+};
+
+const deleteEnemy = async (req, res) => {
+    const cookies = req.cookies;
+    if (!cookies?.jwt) return res.sendStatus(204); // No content status
+    const refreshToken = cookies.jwt;
+
+    const foundUser = await User.findOneAndUpdate(
+        { refreshToken },
+        {
+            $pull: {
+                enemies: { id: parseInt(req.body.id) },
+            },
         }
     ).exec();
 
@@ -174,6 +192,23 @@ const clearEnemies = async (req, res) => {
     return res.send(foundUser);
 };
 
+const adjustHealth = async (req, res) => {
+    const cookies = req.cookies;
+    if (!cookies?.jwt) return res.sendStatus(204); // No content status
+    const refreshToken = cookies.jwt;
+
+    const foundUser = await User.findOneAndUpdate(
+        { refreshToken, "enemies.id": req.body.id },
+        {
+            $set: {
+                "enemies.$.hp": req.body.adjustment,
+            },
+        }
+    ).exec();
+
+    return res.send(foundUser);
+};
+
 module.exports = {
     getRolls,
     updateRolls,
@@ -185,5 +220,7 @@ module.exports = {
     clearPlayers,
     getEnemies,
     addEnemy,
+    deleteEnemy,
     clearEnemies,
+    adjustHealth,
 };

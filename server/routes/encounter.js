@@ -19,6 +19,8 @@ router.put("/deletePlayer", encounterController.deletePlayer);
 // Enemy Health Tracker API Calls
 router.get("/getEnemies", encounterController.getEnemies);
 router.put("/addEnemy", encounterController.addEnemy);
+router.put("/deleteEnemy", encounterController.deleteEnemy);
 router.put("/clearEnemies", encounterController.clearEnemies);
+router.put("/adjustHealth", encounterController.adjustHealth);
 
 module.exports = router;

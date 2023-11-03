@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import axios from "../../api/axios";
 import HealthTrackerList from "./HealthTrackerList";
 import "./health_tracker.css";
 

@@ -24,7 +24,7 @@ const HealthTrackerList = ({ page, setPage }) => {
                 withCredentials: true,
             });
             if (response?.data) {
-                setEnemyArray(response.data.enemies);
+                setEnemyArray(response.data.enemies || []);
             }
         } catch (e) {
             console.error(e);
@@ -60,7 +60,9 @@ const HealthTrackerList = ({ page, setPage }) => {
                                       id={el.id}
                                       name={el.name}
                                       hp={el.hp}
+                                      maxHP={el.maxHP}
                                       color={el.color}
+                                      getEnemies={getEnemies}
                                   />
                               </li>
                           );

@@ -60,6 +60,19 @@
     font-size: 28px;
 }
 
+.section__enemy_mod_health_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.div__button_holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 5px;
+}
+
 .input__type {
     cursor: pointer;
     height: 20px;
@@ -150,6 +163,34 @@
     width: 110px;
 }
 
+.button__add_health,
+.button__sub_health {
+    background-color: #4c74a3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 50px;
+    height: 23px;
+    line-height: 3px;
+    font-family: var(--font-family);
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.button__sub_health {
+    background-color: #a34c50;
+}
+
+.button__add_health:hover {
+    background-color: #5c8fc9;
+}
+
+.button__sub_health:hover {
+    background-color: #cc6065;
+}
+
 .label__enemy {
     font-size: 20px;
 }
@@ -178,18 +219,18 @@
 }
 
 .span__enemy_icons {
-    color: black;
+    color: rgb(80, 80, 80);
     padding: 10px;
 }
 
 .span__enemy_icons * {
     cursor: pointer;
     padding: 5px;
-    transition: all 0.05s;
+    font-size: 22px;
 }
 
 .span__enemy_icons *:hover {
-    color: white;
+    color: rgb(110, 110, 110);
 }
 
 #color_npc,
@@ -220,14 +261,14 @@
     font-weight: bold;
 }
 
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+#health_mod::-webkit-outer-spin-button,
+#health_mod::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
 /* Firefox */
-input[type="number"] {
+#health_mod {
+    appearance: textfield;
     -moz-appearance: textfield;
 }
