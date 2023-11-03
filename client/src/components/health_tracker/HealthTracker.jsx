@@ -4,36 +4,13 @@ import HealthTrackerList from "./HealthTrackerList";
 import "./health_tracker.css";
 
 const HealthTracker = () => {
-    const [enemyArray, setEnemyArray] = useState("");
-    // const [addPage, setAddPage] = useState(false);
-
-    const getEnemies = async () => {
-        try {
-            const response = await axios.get("encounter/getEnemies", {
-                withCredentials: true,
-            });
-            if (response?.data) {
-                setEnemyArray(response.data.enemies || []);
-            }
-        } catch (e) {
-            console.error(e);
-        }
-    };
+    const [page, setPage] = useState("");
 
     useEffect(() => {
-        getEnemies();
+        setPage(<HealthTrackerList page={page} setPage={setPage} />);
     }, []);
 
-    return (
-        <section className="section__health_tracker">
-            <>
-                <HealthTrackerList
-                    enemyArray={enemyArray}
-                    setEnemyArray={setEnemyArray}
-                />
-            </>
-        </section>
-    );
+    return <section className="section__health_tracker">{page}</section>;
 };
 
 export default HealthTracker;
