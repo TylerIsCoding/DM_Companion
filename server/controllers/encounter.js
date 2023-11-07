@@ -162,6 +162,29 @@ const addEnemy = async (req, res) => {
     return res.send(foundUser);
 };
 
+const editEnemy = async (req, res) => {
+    const cookies = req.cookies;
+    if (!cookies?.jwt) return res.sendStatus(204); // No content status
+    const refreshToken = cookies.jwt;
+
+    const id = parseInt(req.body.id);
+    const newMaxHP = parseInt(req.body.maxHP);
+
+    const foundUser = await User.findOneAndUpdate(
+        { refreshToken, "enemies.id": id },
+        {
+            $set: {
+                "enemies.$.id": id,
+                "enemies.$.name": req.body.name || "",
+                "enemies.$.maxHP": newMaxHP,
+                "enemies.$.type": req.body.type,
+                "enemies.$.color": req.body.color,
+            },
+        }
+    );
+    return res.send(foundUser);
+};
+
 const deleteEnemy = async (req, res) => {
     const cookies = req.cookies;
     if (!cookies?.jwt) return res.sendStatus(204); // No content status
@@ -219,6 +242,7 @@ module.exports = {
     editPlayer,
     clearPlayers,
     getEnemies,
+    editEnemy,
     addEnemy,
     deleteEnemy,
     clearEnemies,
