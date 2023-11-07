@@ -253,7 +253,7 @@
     font-size: 18px;
 }
 
-#health_mod {
+.health_mod {
     width: 80px;
     height: 50px;
     border-radius: 10px;
@@ -266,14 +266,14 @@
     font-weight: bold;
 }
 
-#health_mod::-webkit-outer-spin-button,
-#health_mod::-webkit-inner-spin-button {
+.health_mod::-webkit-outer-spin-button,
+.health_mod::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
 /* Firefox */
-#health_mod {
+.health_mod {
     appearance: textfield;
     -moz-appearance: textfield;
 }

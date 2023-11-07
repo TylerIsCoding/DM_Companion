@@ -1,14 +1,14 @@
 import "./health_tracker.css";
 import { faTrash, faEdit, faSkull } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "../../api/axios";
 
 const Enemy = ({ id, name, hp, maxHP, color, getEnemies }) => {
     const [healthMod, setHealthMod] = useState();
-    const [nameDisplay, setNameDisplay] = useState(name);
 
     const addHealth = async () => {
+        document.getElementById(`${id}_health_mod`).value = "";
         const adj =
             Number(hp) + Number(healthMod || 0) > Number(maxHP)
                 ? Number(maxHP)
@@ -27,6 +27,7 @@ const Enemy = ({ id, name, hp, maxHP, color, getEnemies }) => {
     };
 
     const subHealth = async () => {
+        document.getElementById(`${id}_health_mod`).value = "";
         const adj =
             Number(hp) - Number(healthMod || 0) <= 0
                 ? 0
@@ -57,12 +58,6 @@ const Enemy = ({ id, name, hp, maxHP, color, getEnemies }) => {
         }
     };
 
-    useEffect(() => {
-        if (name.length > 30) {
-            setNameDisplay(name.slice(0, 20) + "...");
-        }
-    }, []);
-
     return (
         <>
             <section
@@ -75,14 +70,14 @@ const Enemy = ({ id, name, hp, maxHP, color, getEnemies }) => {
                             icon={faSkull}
                             className="icon__skull"
                         />
-                        {nameDisplay}
+                        {name}
                         <FontAwesomeIcon
                             icon={faSkull}
                             className="icon__skull"
                         />
                     </>
                 ) : (
-                    nameDisplay
+                    name
                 )}
             </section>
             <section className="section__enemy_info_container">
@@ -96,7 +91,8 @@ const Enemy = ({ id, name, hp, maxHP, color, getEnemies }) => {
                     <input
                         type="number"
                         name="health_mod"
-                        id="health_mod"
+                        id={`${id}_health_mod`}
+                        className="health_mod"
                         autoComplete="false"
                         onChange={(e) => {
                             setHealthMod(e.target.value);
