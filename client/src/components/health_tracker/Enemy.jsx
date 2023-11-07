@@ -2,9 +2,10 @@ import "./health_tracker.css";
 import { faTrash, faEdit, faSkull } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import EditEnemy from "./EditEnemy";
 import axios from "../../api/axios";
 
-const Enemy = ({ id, name, hp, maxHP, color, getEnemies }) => {
+const Enemy = ({ id, name, hp, maxHP, color, getEnemies, page, setPage }) => {
     const [healthMod, setHealthMod] = useState();
 
     const addHealth = async () => {
@@ -56,6 +57,20 @@ const Enemy = ({ id, name, hp, maxHP, color, getEnemies }) => {
         } catch (e) {
             console.error(e);
         }
+    };
+
+    const editEnemy = async () => {
+        setPage(
+            <EditEnemy
+                id={id}
+                name={name}
+                hp={hp}
+                maxHP={maxHP}
+                getEnemies={getEnemies}
+                page={page}
+                setPage={setPage}
+            />
+        );
     };
 
     return (
@@ -115,7 +130,10 @@ const Enemy = ({ id, name, hp, maxHP, color, getEnemies }) => {
                 </section>
                 <section>
                     <span className="span__enemy_icons">
-                        <FontAwesomeIcon icon={faEdit} />
+                        <FontAwesomeIcon
+                            icon={faEdit}
+                            onClick={() => editEnemy()}
+                        />
                         <FontAwesomeIcon
                             icon={faTrash}
                             onClick={() => deleteEnemy()}

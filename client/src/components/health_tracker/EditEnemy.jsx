@@ -2,17 +2,28 @@ import { useState } from "react";
 import axios from "../../api/axios";
 import HealthTrackerList from "./HealthTrackerList";
 
-const AddEnemy = ({ page, setPage, enemyArray, setEnemyArray }) => {
-    const [name, setName] = useState("N/A");
-    const [hp, setHp] = useState(0);
-    const [type, setType] = useState("enemy");
-    const [color, setColor] = useState("#a34c50");
+const EditEnemy = ({
+    id,
+    name,
+    type,
+    maxHP,
+    color,
+    page,
+    setPage,
+    enemyArray,
+    setEnemyArray,
+}) => {
+    const [storedName, setStoredName] = useState(name);
+    const [storedMaxHP, setStoredMaxHP] = useState(maxHP);
+    const [storedColor, setStoredColor] = useState(color);
+    const [storedType, setStoredType] = useState(type);
+
     const [npcColor, setNpcColor] = useState("#646464");
     const [playerColor, setPlayerColor] = useState("#4c74a3");
     const [enemyColor, setEnemyColor] = useState("#a34c50");
 
     const onRadioChange = (e) => {
-        setType(e.target.value);
+        setStoredType(e.target.value);
     };
 
     const cancel = () => {
@@ -29,12 +40,13 @@ const AddEnemy = ({ page, setPage, enemyArray, setEnemyArray }) => {
     const handleSubmit = async () => {
         try {
             const response = await axios.put(
-                "encounter/addEnemy",
+                "encounter/editEnemy",
                 {
-                    name: name,
-                    hp: hp,
-                    type: type,
-                    color: color,
+                    id: id,
+                    name: storedName,
+                    maxHP: storedMaxHP,
+                    type: storedType,
+                    color: storedColor,
                 },
                 {
                     withCredentials: true,
@@ -57,12 +69,8 @@ const AddEnemy = ({ page, setPage, enemyArray, setEnemyArray }) => {
 
     return (
         <>
-            <h1>Add Character</h1>
-            <form
-                onSubmit={handleSubmit}
-                className="form__add_enemy"
-                autoComplete="off"
-            >
+            <h1>Edit {storedName}</h1>
+            <form onSubmit="" className="form__add_enemy" autoComplete="off">
                 <label
                     className="label__form label__enemy"
                     htmlFor="enemy_name"
@@ -73,11 +81,12 @@ const AddEnemy = ({ page, setPage, enemyArray, setEnemyArray }) => {
                         type="text"
                         name="input__enemy_name"
                         placeholder="Enter character name"
+                        value={storedName}
                         required
                         className="input__text input__init"
                         spellCheck="false"
                         onChange={(e) => {
-                            setName(e.target.value);
+                            setStoredName(e.target.value);
                         }}
                     ></input>
                 </label>
@@ -88,6 +97,7 @@ const AddEnemy = ({ page, setPage, enemyArray, setEnemyArray }) => {
                         type="number"
                         name="input__enemy_hp"
                         placeholder="Enter hit points"
+                        value={storedMaxHP}
                         required
                         min={0}
                         max={9999}
@@ -99,7 +109,7 @@ const AddEnemy = ({ page, setPage, enemyArray, setEnemyArray }) => {
                             } else if (e.target.value < 0) {
                                 e.target.value = 0;
                             }
-                            setHp(e.target.value);
+                            setStoredMaxHP(e.target.value);
                         }}
                     ></input>
                 </label>
@@ -120,7 +130,7 @@ const AddEnemy = ({ page, setPage, enemyArray, setEnemyArray }) => {
                                     className="input__type"
                                     onChange={(e) => {
                                         onRadioChange(e);
-                                        setColor(npcColor);
+                                        setStoredColor(npcColor);
                                     }}
                                 ></input>
                                 NPC
@@ -133,7 +143,7 @@ const AddEnemy = ({ page, setPage, enemyArray, setEnemyArray }) => {
                                 onChange={(e) => {
                                     setNpcColor(e.target.value);
                                     if (type === "npc") {
-                                        setColor(npcColor);
+                                        setStoredColor(npcColor);
                                     }
                                 }}
                             />
@@ -149,7 +159,7 @@ const AddEnemy = ({ page, setPage, enemyArray, setEnemyArray }) => {
                                     className="input__type"
                                     onChange={(e) => {
                                         onRadioChange(e);
-                                        setColor(enemyColor);
+                                        setStoredColor(enemyColor);
                                     }}
                                 ></input>
                                 Enemy
@@ -162,7 +172,7 @@ const AddEnemy = ({ page, setPage, enemyArray, setEnemyArray }) => {
                                 onChange={(e) => {
                                     setEnemyColor(e.target.value);
                                     if (type === "enemy") {
-                                        setColor(enemyColor);
+                                        setStoredColor(enemyColor);
                                     }
                                 }}
                             />
@@ -178,7 +188,7 @@ const AddEnemy = ({ page, setPage, enemyArray, setEnemyArray }) => {
                                     className="input__type"
                                     onChange={(e) => {
                                         onRadioChange(e);
-                                        setColor(playerColor);
+                                        setStoredColor(playerColor);
                                     }}
                                 ></input>
                                 Player
@@ -191,7 +201,7 @@ const AddEnemy = ({ page, setPage, enemyArray, setEnemyArray }) => {
                                 onChange={(e) => {
                                     setPlayerColor(e.target.value);
                                     if (type === "player") {
-                                        setColor(playerColor);
+                                        setStoredColor(playerColor);
                                     }
                                 }}
                             />
@@ -217,4 +227,4 @@ const AddEnemy = ({ page, setPage, enemyArray, setEnemyArray }) => {
     );
 };
 
-export default AddEnemy;
+export default EditEnemy;
