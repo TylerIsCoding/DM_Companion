@@ -56,11 +56,21 @@ const addPlayer = async (req, res) => {
     const playerName = req.body.name;
     const playerModifier = parseInt(req.body.modifier);
     const playerColor = req.body.color;
+    function getTextColor(hex) {
+        let r = parseInt(hex.substr(1, 2), 16);
+        let g = parseInt(hex.substr(3, 2), 16);
+        let b = parseInt(hex.substr(5, 2), 16);
+        const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+        console.log(`Hex: ${hex}, RGB: ${[r, g, b]}, YIQ: ${yiq}`);
+        return yiq >= 170 ? "black" : "white";
+    }
+    const textColor = getTextColor(playerColor);
     const obj = {
         id: Math.floor(Math.random() * 100000000000),
         name: playerName,
         modifier: playerModifier,
         color: playerColor,
+        textColor: textColor,
         totalRoll: 0,
     };
 
@@ -83,7 +93,15 @@ const editPlayer = async (req, res) => {
     const playerName = req.body.name || "";
     const playerModifier = parseInt(req.body.modifier) || 0;
     const playerColor = req.body.color || "#000000";
-
+    function getTextColor(hex) {
+        let r = parseInt(hex.substr(1, 2), 16);
+        let g = parseInt(hex.substr(3, 2), 16);
+        let b = parseInt(hex.substr(5, 2), 16);
+        const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+        console.log(`Hex: ${hex}, RGB: ${[r, g, b]}, YIQ: ${yiq}`);
+        return yiq >= 170 ? "black" : "white";
+    }
+    const textColor = getTextColor(playerColor);
     const foundUser = await User.findOneAndUpdate(
         { refreshToken, "initMembers.id": id },
         {
@@ -92,6 +110,7 @@ const editPlayer = async (req, res) => {
                 "initMembers.$.name": playerName,
                 "initMembers.$.modifier": playerModifier,
                 "initMembers.$.color": playerColor,
+                "initMembers.$.textColor": textColor || "black",
             },
         }
     );
@@ -142,7 +161,15 @@ const addEnemy = async (req, res) => {
     const cookies = req.cookies;
     if (!cookies?.jwt) return res.sendStatus(204); // No content status
     const refreshToken = cookies.jwt;
-
+    function getTextColor(hex) {
+        let r = parseInt(hex.substr(1, 2), 16);
+        let g = parseInt(hex.substr(3, 2), 16);
+        let b = parseInt(hex.substr(5, 2), 16);
+        const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+        console.log(`Hex: ${hex}, RGB: ${[r, g, b]}, YIQ: ${yiq}`);
+        return yiq >= 170 ? "black" : "white";
+    }
+    const textColor = getTextColor(req.body.color);
     const obj = {
         id: Math.floor(Math.random() * 100000000000),
         name: req.body.name,
@@ -150,6 +177,7 @@ const addEnemy = async (req, res) => {
         maxHP: Number(req.body.hp),
         type: req.body.type,
         color: req.body.color,
+        textColor: textColor,
     };
 
     const foundUser = await User.findOneAndUpdate(
@@ -169,7 +197,15 @@ const editEnemy = async (req, res) => {
 
     const id = parseInt(req.body.id);
     const newMaxHP = parseInt(req.body.maxHP);
-
+    function getTextColor(hex) {
+        let r = parseInt(hex.substr(1, 2), 16);
+        let g = parseInt(hex.substr(3, 2), 16);
+        let b = parseInt(hex.substr(5, 2), 16);
+        const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+        console.log(`Hex: ${hex}, RGB: ${[r, g, b]}, YIQ: ${yiq}`);
+        return yiq >= 170 ? "black" : "white";
+    }
+    const textColor = getTextColor(req.body.color);
     const foundUser = await User.findOneAndUpdate(
         { refreshToken, "enemies.id": id },
         {
@@ -179,6 +215,7 @@ const editEnemy = async (req, res) => {
                 "enemies.$.maxHP": newMaxHP,
                 "enemies.$.type": req.body.type,
                 "enemies.$.color": req.body.color,
+                "enemies.$.textColor": textColor,
             },
         }
     );

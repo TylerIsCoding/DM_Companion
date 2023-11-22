@@ -33,6 +33,7 @@ const EnterRolls = ({ page, setPage, playerArray, setPlayerArray }) => {
                                       id={el.id}
                                       name={el.name}
                                       color={el.color}
+                                      textColor={el.textColor}
                                       mod={el.modifier}
                                       total={el.totalRoll}
                                       playerArray={playerArray}
