@@ -31,7 +31,14 @@ const Combat = ({ page, setPage, playerArray, setPlayerArray }) => {
                                   <li
                                       key={el.id}
                                       className="li__init_player"
-                                      style={{ backgroundColor: el.color }}
+                                      style={{
+                                          backgroundColor: el.color,
+                                          color: el.textColor,
+                                          border:
+                                              el.textColor === "black"
+                                                  ? "2px solid black"
+                                                  : "none",
+                                      }}
                                   >
                                       <Player
                                           page={page}

@@ -142,7 +142,7 @@ const EditEnemy = ({
                                 value={npcColor}
                                 onChange={(e) => {
                                     setNpcColor(e.target.value);
-                                    if (type === "npc") {
+                                    if (storedType === "npc") {
                                         setStoredColor(npcColor);
                                     }
                                 }}
@@ -171,7 +171,7 @@ const EditEnemy = ({
                                 value={enemyColor}
                                 onChange={(e) => {
                                     setEnemyColor(e.target.value);
-                                    if (type === "enemy") {
+                                    if (storedType === "enemy") {
                                         setStoredColor(enemyColor);
                                     }
                                 }}
@@ -200,7 +200,7 @@ const EditEnemy = ({
                                 value={playerColor}
                                 onChange={(e) => {
                                     setPlayerColor(e.target.value);
-                                    if (type === "player") {
+                                    if (storedType === "player") {
                                         setStoredColor(playerColor);
                                     }
                                 }}

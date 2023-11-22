@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { faDiceThree } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const PlayerRoll = ({ id, name, color, playerArray }) => {
+const PlayerRoll = ({ id, name, color, textColor, playerArray }) => {
     const [roll, setRoll] = useState("");
     let player = playerArray.find((item) => item.id === id);
 
@@ -23,7 +23,11 @@ const PlayerRoll = ({ id, name, color, playerArray }) => {
         <>
             <div
                 className="div__init_player"
-                style={{ backgroundColor: color }}
+                style={{
+                    backgroundColor: color,
+                    color: textColor,
+                    border: textColor === "black" ? "2px solid black" : "none",
+                }}
             >
                 {name.length > 15 ? name.slice(0, 10) + "..." : name}
             </div>

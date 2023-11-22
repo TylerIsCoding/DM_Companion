@@ -62,6 +62,7 @@ const HealthTrackerList = ({ page, setPage }) => {
                                       hp={el.hp}
                                       maxHP={el.maxHP}
                                       color={el.color}
+                                      textColor={el.textColor}
                                       getEnemies={getEnemies}
                                       page={page}
                                       setPage={setPage}
