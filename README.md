@@ -17,13 +17,14 @@ This project utilizes a combination of technologies to create a dynamic and inte
 - Node.js and Express.js: Hosts the server to handle HTTP requests and responses.
 
 
-To ensure a seamless user experience across devices, a responsive design approach was adopted, guaranteeing that the website looks great on all screen sizes.
+A responsive design approach was adopted to ensure a seamless user experience across devices, guaranteeing that the website looks great on all screen sizes.
 </p>
 <br>
 <h2>Optimizations</h2>
 <p>Here are some ways that I could increase performance on my website:
 
 These are some popular methods of optimization that I am considering:
+- API Requests: There are a lot of redundant API calls to the server that can be done. I need to go back and pass the API call down to every component that requires it.
 - Database Indexing: Analyze the database queries and identify frequently accessed fields or columns. Implement appropriate indexes on these fields to improve query performance.- Optimized all images by reducing their file size and using correct image formats
 - Caching: Utilize caching mechanisms, such as Redis or Memcached, to store frequently accessed data in memory. This can reduce the load on the database and improve response times.
 - Asset Bundling: Consider bundling your static assets (CSS, JavaScript) into a single file to reduce the number of HTTP requests required to load the page. This can enhance performance, particularly for larger projects with multiple assets.
@@ -34,7 +35,7 @@ These are some popular methods of optimization that I am considering:
 - Database Query Optimization: Optimize your database queries by ensuring they are properly indexed, avoiding unnecessary joins, and utilizing query optimization techniques specific to your database technology.
 - Browser Caching: Configure appropriate caching headers for static assets, allowing browsers to cache them locally. This reduces the need for repeated requests, improving performance for returning visitors.
 
-Quest Log is still a work in progress and will be optimized before I consider it complete. This is a minimum viable product at the moment.
+DM Companion is still a work in progress and will be optimized before I consider it complete. This is a minimum viable product at the moment.
 </p>
 <br>
 <h2>Lessons Learned</h2>
