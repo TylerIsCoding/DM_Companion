@@ -38,9 +38,9 @@ Quest Log is still a work in progress and will be optimized before I consider it
 </p>
 <br>
 <h2>Lessons Learned</h2>
-<p>This is the first application that I have written that uses authentication. I have learned a considerable amount creating this project so far.
+<p>This is the first major application that I've written with React.js. Utilizing React to deliver reusable components was a game-changer in terms of making this application.
 
-- I used Mongoose and Handlebars for the first time. This really has made a huge difference in how I will create full-stack applications in the future.
+- I used React from start to finish (the app is still a WIP... so not really 'finished') utilizing it for the entire front end.
 - This is one of the first real MVC applications I have written and the MVC paradigm makes all the difference when it comes to project organization.
 - The importance of performance optimization and website accessibility
 - The importance of testing and debugging in the development process
