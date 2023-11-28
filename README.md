@@ -1,5 +1,5 @@
 <h1 align="center">DM Companion</h1>
-<img src="https://i.imgur.com/ehurLB1.jpg">
+<img src="https://i.imgur.com/PEwDnpP.png">
 <br>
 <p>DM Companion is a web application that uses JWT for authentication. The application enables users to create and manage session notes, recaps, and any other information they need to store for their ongoing Dungeons and Dragons campaign. Users also have access to the DnD 5th Edition Monster Manual API, and an Encounter Tracker that gives access to an initiative tracker, a dice roller, and a health tracker app.</p>
 
