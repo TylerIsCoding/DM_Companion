@@ -4,7 +4,7 @@
 <p>DM Companion is a web application that uses JWT for authentication. The application enables users to create and manage session notes, recaps, and any other information they need to store for their ongoing Dungeons and Dragons campaign. Users also have access to the DnD 5th Edition Monster Manual API, and an Encounter Tracker that gives access to an initiative tracker, a dice roller, and a health tracker app.</p>
 
 <h2>How It's Made</h2>
-<p><strong>Tech Used:</strong>React, MongoDB, Mongoose, Express.js, Node.js, HTML5, CSS3, and JavaScript</p>
+<p><strong>Tech Used:</strong>React, MongoDB, Mongoose, Express.js, Node.js, HTML5, CSS3, JSX, and JavaScript</p>
 <br>
 <p>
 This project utilizes a combination of technologies to create a dynamic and interactive application. Here's a breakdown of the tech stack and their respective roles:
