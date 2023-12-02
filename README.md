@@ -42,7 +42,7 @@ DM Companion is still a work in progress and will be optimized before I consider
 <p>This is the first major application that I've written with React.js. Utilizing React to deliver reusable components was a game-changer in terms of making this application.
 
 - I used React from start to finish (the app is still a WIP... so not really 'finished') utilizing it for the entire front end.
-- This is one of the first real MVC applications I have written and the MVC paradigm makes all the difference when it comes to project organization.
+- This uses the MVC design paradign and was great practice for utilizing the separation of concerns when it comes to code management and organization.
 - The importance of performance optimization and website accessibility
 - The importance of testing and debugging in the development process
 - The significance of keeping up with the latest web development technologies and trends
