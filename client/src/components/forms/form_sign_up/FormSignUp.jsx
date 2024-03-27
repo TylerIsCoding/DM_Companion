@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = "signup";
+const REGISTER_URL = "/signup";
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -71,7 +71,7 @@ const SignUp = () => {
                     withCredentials: true,
                 }
             );
-            console.log(response?.data);
+            console.log(response?.data || "Empty submit response.");
             setErrMsg("");
             setPwd("");
             setMatchPwd("");
