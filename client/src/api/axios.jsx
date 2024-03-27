@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "https://technotes-api.onrender.com";
+const BASE_URL = "https://dm-companion.onrender.com";
 
 export default axios.create({
     baseURL: BASE_URL,
