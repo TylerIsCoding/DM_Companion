@@ -5,7 +5,17 @@ import { useState } from "react";
 import EditEnemy from "./EditEnemy";
 import axios from "../../api/axios";
 
-const Enemy = ({ id, name, hp, maxHP, color, getEnemies, page, setPage }) => {
+const Enemy = ({
+    id,
+    name,
+    hp,
+    maxHP,
+    color,
+    textColor,
+    getEnemies,
+    page,
+    setPage,
+}) => {
     const [healthMod, setHealthMod] = useState();
 
     const addHealth = async () => {
@@ -66,6 +76,8 @@ const Enemy = ({ id, name, hp, maxHP, color, getEnemies, page, setPage }) => {
                 name={name}
                 hp={hp}
                 maxHP={maxHP}
+                color={color}
+                textColor={textColor}
                 getEnemies={getEnemies}
                 page={page}
                 setPage={setPage}
@@ -77,7 +89,12 @@ const Enemy = ({ id, name, hp, maxHP, color, getEnemies, page, setPage }) => {
         <>
             <section
                 className="section__enemy_name_container"
-                style={{ backgroundColor: color }}
+                style={{
+                    backgroundColor: color,
+                    color: textColor,
+                    border: textColor === "black" ? "2px solid black" : "none",
+                    borderBottom: "none",
+                }}
             >
                 {hp === 0 ? (
                     <>

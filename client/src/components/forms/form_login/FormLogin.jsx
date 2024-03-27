@@ -54,9 +54,10 @@ const Login = () => {
         } catch (err) {
             if (!err?.response) {
                 setErrMsg("No server response.");
-            } else if (err.response?.status === 400) {
-                setErrMsg(err.response?.data);
-            } else if (err.response?.status === 401) {
+            } else if (
+                err.response?.status === 400 ||
+                err.response?.status === 401
+            ) {
                 setErrMsg(err.response?.data);
             } else {
                 setErrMsg("Login failed.");
