@@ -1,4 +1,4 @@
-import axios from "../../api/axios";
+import { axiosPrivate } from "../../api/axios";
 import { useState } from "react";
 import "./init_tracker.css";
 import InitList from "./InitList";
@@ -19,7 +19,7 @@ const EditPlayer = ({
 
     const editPlayer = async () => {
         try {
-            const response = await axios.put(
+            const response = await axiosPrivate.put(
                 "encounter/editPlayer",
                 { id: id, name: name, modifier: mod, color: color },
                 {

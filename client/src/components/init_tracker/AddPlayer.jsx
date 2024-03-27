@@ -1,6 +1,6 @@
 import { useState } from "react";
 import InitList from "./InitList";
-import axios from "../../api/axios";
+import { axiosPrivate } from "../../api/axios";
 import "./init_tracker.css";
 
 const AddPlayer = ({ page, setPage }) => {
@@ -11,7 +11,7 @@ const AddPlayer = ({ page, setPage }) => {
     const addPlayer = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put(
+            const response = await axiosPrivate.put(
                 "encounter/addPlayer",
                 { name: name, modifier: mod, color: color },
                 {

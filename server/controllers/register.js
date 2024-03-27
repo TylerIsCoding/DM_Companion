@@ -7,7 +7,7 @@ const handleSignup = async (req, res) => {
     if (existingUser) {
         res.status(409).send("Username already taken.");
     } else {
-        const newUser = User.create({
+        const newUser = await User.create({
             username: username,
             password: password,
         });

@@ -3,7 +3,7 @@ import Button from "../../button/Button";
 import { Link } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import axios from "../../../api/axios";
+import { axiosPrivate } from "../../../api/axios";
 import {
     faCheck,
     faTimes,
@@ -63,7 +63,7 @@ const SignUp = () => {
             return;
         }
         try {
-            const response = await axios.post(
+            const response = await axiosPrivate.post(
                 REGISTER_URL,
                 JSON.stringify({ username: user, password: pwd }),
                 {

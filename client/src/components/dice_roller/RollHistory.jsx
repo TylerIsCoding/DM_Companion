@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import axios from "../../api/axios";
+import { axiosPrivate } from "../../api/axios";
 
 const RollHistory = ({ rollHistory, setRollHistory }) => {
     useEffect(() => {
         const getRolls = async () => {
             try {
-                const response = await axios.get("encounter/getRolls", {
+                const response = await axiosPrivate.get("encounter/getRolls", {
                     withCredentials: true,
                 });
                 const rolls = response.data.rollHistory;
@@ -20,7 +20,7 @@ const RollHistory = ({ rollHistory, setRollHistory }) => {
 
     const clearRollHistory = async () => {
         try {
-            const response = await axios.put("encounter/clearRolls", {
+            const response = await axiosPrivate.put("encounter/clearRolls", {
                 withCredentials: true,
             });
             const rolls = response.data.rollHistory;

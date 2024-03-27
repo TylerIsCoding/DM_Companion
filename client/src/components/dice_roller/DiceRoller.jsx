@@ -1,15 +1,19 @@
 import DiceImage from "./DiceImage";
 import DiceButtons from "./DiceButtons";
 import { useState } from "react";
-import axios from "../../api/axios";
+import { axiosPrivate } from "../../api/axios";
 import "./dice.css";
 
 const DiceRoller = ({ setRollHistory }) => {
     const addRoll = async (roll) => {
         try {
-            const response = await axios.put("/encounter/updateRolls", roll, {
-                withCredentials: true,
-            });
+            const response = await axiosPrivate.put(
+                "/encounter/updateRolls",
+                roll,
+                {
+                    withCredentials: true,
+                }
+            );
             setRollHistory(response.data);
         } catch (e) {
             console.log(e);
@@ -18,7 +22,7 @@ const DiceRoller = ({ setRollHistory }) => {
 
     const getRolls = async () => {
         try {
-            const response = await axios.get("encounter/getRolls", {
+            const response = await axiosPrivate.get("encounter/getRolls", {
                 withCredentials: true,
             });
             const rolls = response.data.rollHistory;

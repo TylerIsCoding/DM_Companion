@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
-import axios from "../../../api/axios";
+import { axiosPrivate } from "../../../api/axios";
 import HeaderBook from "../../header_book/HeaderBook";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import useInput from "../../../hooks/useInput";
@@ -38,7 +38,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(
+            const response = await axiosPrivate.post(
                 LOGIN_URL,
                 JSON.stringify({ username: user, password: pwd }),
                 {

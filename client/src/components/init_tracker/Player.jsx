@@ -1,5 +1,5 @@
 import "./init_tracker.css";
-import axios from "../../api/axios";
+import { axiosPrivate } from "../../api/axios";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EditPlayer from "./EditPlayer";
@@ -16,7 +16,7 @@ const Player = ({
 }) => {
     const trash = async () => {
         try {
-            const response = await axios.put(
+            const response = await axiosPrivate.put(
                 "/encounter/deletePlayer",
                 {
                     id: id,
