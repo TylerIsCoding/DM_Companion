@@ -3,7 +3,7 @@ import Button from "../../button/Button";
 import { Link } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
+import axios from "../../../api/axios";
 import {
     faCheck,
     faTimes,
