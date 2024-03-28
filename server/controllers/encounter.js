@@ -119,6 +119,7 @@ const editPlayer = async (req, res) => {
 
 const clearPlayers = async (req, res) => {
     const cookies = req.cookies;
+    console.log(cookies);
     if (!cookies?.jwt) return res.sendStatus(204); // No content status
     const refreshToken = cookies.jwt;
 
