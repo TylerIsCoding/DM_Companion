@@ -41,7 +41,7 @@ app.use(logger("dev"));
 
 // CORS
 app.use(credentials);
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 // Routes
 
