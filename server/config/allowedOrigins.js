@@ -1,6 +1,3 @@
-const allowedOrigins = [
-    "https://dm-companion-app.onrender.com",
-    "https://dm-companion-app.onrender.com/",
-];
+const allowedOrigins = ["http://localhost:3000", "http://localhost:3001"];
 
 module.exports = allowedOrigins;
