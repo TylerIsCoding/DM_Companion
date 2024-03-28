@@ -15,15 +15,13 @@ const updateRolls = async (req, res) => {
     if (!cookies?.jwt) return res.sendStatus(204); // No content status
     const refreshToken = cookies.jwt;
 
-    const roll = parseInt(
-        JSON.stringify(Object.keys(req.body)[0]).replaceAll('"', "")
-    );
-
+    const roll = parseInt(Object.keys(req.body)[0]).replaceAll('"', "");
+    console.log(roll);
     const foundUser = await User.findOneAndUpdate(
         { refreshToken },
         { $push: { rollHistory: { $each: [roll], $position: 0 } } }
     ).exec();
-    return res.send(JSON.stringify(foundUser.rollHistory));
+    return res.send(foundUser.rollHistory);
 };
 
 const clearRolls = async (req, res) => {
@@ -36,7 +34,7 @@ const clearRolls = async (req, res) => {
         { rollHistory: [] }
     ).exec();
 
-    return res.send(JSON.stringify(foundUser.rollHistory));
+    return res.send(foundUser.rollHistory);
 };
 
 // Initiative Tracker API Requests
