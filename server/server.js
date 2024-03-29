@@ -52,10 +52,12 @@ app.use("/login", loginRoute);
 app.use("/refresh", refreshRoute);
 app.use("/logout", logoutRoute);
 app.use("/encounter", encounterRoute);
+
 // Render client for any path
 app.get("*", (req, res) =>
     res.sendFile(__dirname + "/client/build/index.html")
 );
+
 app.use(verifyJWT);
 app.use("/users", usersRoute);
 
