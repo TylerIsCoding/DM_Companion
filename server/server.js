@@ -44,23 +44,20 @@ app.use(credentials);
 app.use(cors(corsOptions));
 
 // API Routes
+// Using CLient App
+app.use(express.static(__dirname + "/client/build"));
 
 app.use("/signup", registerRoute);
 app.use("/login", loginRoute);
 app.use("/refresh", refreshRoute);
 app.use("/logout", logoutRoute);
 app.use("/encounter", encounterRoute);
-
-app.use(verifyJWT);
-app.use("/users", usersRoute);
-
-// Using CLient App
-app.use(express.static(__dirname + "/client/build"));
-
 // Render client for any path
 app.get("*", (req, res) =>
     res.sendFile(__dirname + "/client/build/index.html")
 );
+app.use(verifyJWT);
+app.use("/users", usersRoute);
 
 app.listen(process.env.PORT || 3000, () => {
     console.log(`Server running on port ${process.env.PORT}...`);
