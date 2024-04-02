@@ -7,7 +7,6 @@ import "./dice.css";
 const DiceRoller = ({ setRollHistory }) => {
     const addRoll = async (roll) => {
         try {
-            console.log(roll);
             const response = await axiosPrivate.put(
                 "encounter/updateRolls",
                 roll,
@@ -15,7 +14,6 @@ const DiceRoller = ({ setRollHistory }) => {
                     withCredentials: true,
                 }
             );
-            console.log(response);
             setRollHistory(response.data);
         } catch (e) {
             console.log(e);
