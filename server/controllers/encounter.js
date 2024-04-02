@@ -14,7 +14,7 @@ const updateRolls = async (req, res) => {
     const cookies = req.cookies;
     if (!cookies?.jwt) return res.sendStatus(204); // No content status
     const refreshToken = cookies.jwt;
-    console.log(req.body.roll);
+
     const roll = parseInt(
         JSON.stringify(Object.keys(req.body)[0]).replaceAll('"', "")
     );
@@ -118,7 +118,6 @@ const editPlayer = async (req, res) => {
 
 const clearPlayers = async (req, res) => {
     const cookies = req.cookies;
-    console.log(cookies);
     if (!cookies?.jwt) return res.sendStatus(204); // No content status
     const refreshToken = cookies.jwt;
 
